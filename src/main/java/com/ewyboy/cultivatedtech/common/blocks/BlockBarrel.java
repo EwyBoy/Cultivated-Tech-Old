@@ -1,7 +1,7 @@
 package com.ewyboy.cultivatedtech.common.blocks;
 
 import com.ewyboy.cultivatedtech.common.loaders.ItemLoader;
-import com.sun.istack.internal.Nullable;
+import javax.annotation.Nullable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -41,16 +41,16 @@ public class BlockBarrel extends BlockBaseModeled {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         ItemStack item = new ItemStack(ItemLoader.barrelTap);
 
-        if (heldItem != null && !world.getBlockState(pos).getValue(ENABLED)) {
+        if (heldItem != null && !world.getBlockState(pos).getValue(ENABLED) && world.getBlockState(pos).getValue(FACING) == side) {
             if (heldItem.getItem().equals(item.getItem())) {
                 if (!player.isCreative()) heldItem.stackSize--;
                 world.setBlockState(pos, getDefaultState().withProperty(ENABLED, true).withProperty(FACING, world.getBlockState(pos).getValue(FACING)));
             }
         }
-        if (player.isSneaking() && world.getBlockState(pos).getValue(ENABLED)) {
+        if (player.isSneaking() && world.getBlockState(pos).getValue(ENABLED) && world.getBlockState(pos).getValue(FACING) == side) {
             world.setBlockState(pos, getDefaultState().withProperty(ENABLED, false).withProperty(FACING, world.getBlockState(pos).getValue(FACING)));
-            if (!player.inventory.addItemStackToInventory(item)) {
-                if (!player.isCreative())  {
+            if (!player.isCreative())  {
+            	if (!player.inventory.addItemStackToInventory(item)) {
                     EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1.25, pos.getZ() + 0.5, item);
                     world.spawnEntityInWorld(entityItem);
                 }
