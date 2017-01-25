@@ -1,0 +1,16 @@
+################################
+###         Unknown          ###
+################################
+
+#  - Creative Tab  - #
+itemGroup.cultivatedtech=Cultivated Tech
+
+# -  Blocks - #
+tile.cultivatedtech.barrel.name=Barrel
+tile.cultivatedtech.crophemp.name=Industrial Hemp
+
+
+#  - Items  - #
+item.cultivatedtech.barreltap.name=Barrel Tap
+item.cultivatedtech.hemp.name=Industrial Hemp
+item.cultivatedtech.seedhemp.name=Industrial Hemp Seeds

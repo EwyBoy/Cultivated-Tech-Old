@@ -1,0 +1,50 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/hemp/hemp0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/hemp/hemp1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/hemp/hemp2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/hemp/hemp3"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/hemp/hemp4"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/hemp/hemp5"
+        }
+      },
+      "6": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/hemp/hemp6"
+        }
+      },
+      "7": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/hemp/hemp7"
+        }
+      }
+    }
+  }
+}
