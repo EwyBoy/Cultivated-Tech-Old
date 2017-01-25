@@ -6,8 +6,8 @@
   "variants": {
     "normal": [{}],
     "inventory": [{}],
-        "axis=y": {"model": "cultivatedtech:blockHemp"},
-        "axis=z": {"model": "cultivatedtech:blockHemp", "x": 90},
-        "axis=x": {"model": "cultivatedtech:blockHemp", "x": 90, "y": 90}
+    "axis=y": {"model": "cultivatedtech:blockHemp"},
+    "axis=z": {"model": "cultivatedtech:blockHemp", "x": 90},
+    "axis=x": {"model": "cultivatedtech:blockHemp", "x": 90, "y": 90}
   }
 }

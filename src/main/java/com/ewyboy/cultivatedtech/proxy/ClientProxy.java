@@ -1,6 +1,6 @@
 package com.ewyboy.cultivatedtech.proxy;
 
-import com.ewyboy.cultivatedtech.common.blocks.fluid.UnknownFluidBlock;
+import com.ewyboy.cultivatedtech.common.blocks.fluid.CTFluidBlock;
 import com.ewyboy.cultivatedtech.common.items.ItemBase;
 import com.ewyboy.cultivatedtech.common.loaders.BlockLoader;
 import com.ewyboy.cultivatedtech.common.loaders.ItemLoader;
@@ -67,7 +67,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     private void initFluidModels() {
-        BlockLoader.BLOCKS.values().stream().filter(block -> block instanceof UnknownFluidBlock).forEachOrdered(block -> registerFluidBlockRendering(block, block.getRegistryName().toString().replace("cultivatedtech:", "")));
+        BlockLoader.BLOCKS.values().stream().filter(block -> block instanceof CTFluidBlock).forEachOrdered(block -> registerFluidBlockRendering(block, block.getRegistryName().toString().replace("cultivatedtech:", "")));
     }
 
     @Override

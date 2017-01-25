@@ -4,7 +4,7 @@ import com.ewyboy.cultivatedtech.common.blocks.BlockBarrel;
 import com.ewyboy.cultivatedtech.common.blocks.BlockHemp;
 import com.ewyboy.cultivatedtech.common.blocks.BlockSoil;
 import com.ewyboy.cultivatedtech.common.blocks.crops.BlockCropHemp;
-import com.ewyboy.cultivatedtech.common.blocks.fluid.UnknownFluidBlock;
+import com.ewyboy.cultivatedtech.common.blocks.fluid.CTFluidBlock;
 import com.ewyboy.cultivatedtech.common.material.UnknownMaterials;
 import com.ewyboy.cultivatedtech.common.utility.Reference;
 import com.ewyboy.cultivatedtech.common.utility.interfaces.IBlockRenderer;
@@ -27,7 +27,7 @@ public class BlockLoader {
     public static final HashMap<String, Block> BLOCKS = new HashMap<>();
 
     //Fluids
-    public static BlockFluidClassic ethanol = new UnknownFluidBlock(FluidLoader.ETHANOL, UnknownMaterials.FUEL);
+    public static BlockFluidClassic ethanol = new CTFluidBlock(FluidLoader.ETHANOL, UnknownMaterials.FUEL);
 
     //Blocks
     public static BlockHemp blockHemp = new BlockHemp();

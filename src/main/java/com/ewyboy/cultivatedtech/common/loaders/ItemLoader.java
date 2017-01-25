@@ -1,7 +1,6 @@
 package com.ewyboy.cultivatedtech.common.loaders;
 
 import com.ewyboy.cultivatedtech.common.items.ItemBase;
-import com.ewyboy.cultivatedtech.common.items.ItemBaseBarrelTap;
 import com.ewyboy.cultivatedtech.common.items.ItemBaseSeeds;
 import com.ewyboy.cultivatedtech.common.utility.Reference;
 import com.ewyboy.cultivatedtech.common.utility.interfaces.IItemRenderer;
@@ -22,10 +21,9 @@ public class ItemLoader {
 
     public static final HashMap<String, Item> ITEMS = new HashMap<>();
 
-    //Items
-    public static ItemBaseBarrelTap barrelTap = new ItemBaseBarrelTap("barrelTap");
-    public static ItemBaseSeeds seedHemp = new ItemBaseSeeds("seedHemp", BlockLoader.cropHemp, Blocks.FARMLAND);
     public static ItemBase hemp = new ItemBase("hemp");
+    public static ItemBase barrelTap = new ItemBase("barrelTap");
+    public static ItemBaseSeeds seedHemp = new ItemBaseSeeds("seedHemp", BlockLoader.cropHemp, BlockLoader.soil);
 
     public static void init() {
         registerItems();

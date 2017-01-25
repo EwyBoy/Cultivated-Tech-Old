@@ -5,6 +5,14 @@
   },
   "variants": {
     "normal": [{}],
-    "inventory": [{}]
+    "inventory": [{}],
+    "moisture=0": { "model": "cultivatedtech:soil" },
+    "moisture=1": { "model": "cultivatedtech:soil" },
+    "moisture=2": { "model": "cultivatedtech:soil" },
+    "moisture=3": { "model": "cultivatedtech:soil" },
+    "moisture=4": { "model": "cultivatedtech:soil" },
+    "moisture=5": { "model": "cultivatedtech:soil" },
+    "moisture=6": { "model": "cultivatedtech:soil" },
+    "moisture=7": { "model": "cultivatedtech:soil" }
   }
 }

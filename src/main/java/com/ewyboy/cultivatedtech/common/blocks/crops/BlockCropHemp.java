@@ -1,8 +1,10 @@
 package com.ewyboy.cultivatedtech.common.blocks.crops;
 
+import com.ewyboy.cultivatedtech.common.loaders.BlockLoader;
 import com.ewyboy.cultivatedtech.common.loaders.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -79,15 +81,15 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable {
         breakBlock(world, pos, state);
 
         int minY = pos.getY() - 4;
-        for(; pos.getY() >= minY && world.getBlockState(pos).getBlock() != Blocks.FARMLAND; pos = pos.down());
-        if (world.getBlockState(pos).getBlock().equals(Blocks.FARMLAND)) world.setBlockState(pos.up(), getStateFromMeta(0));
+        for(; pos.getY() >= minY && !(world.getBlockState(pos).getBlock() instanceof BlockFarmland); pos = pos.down());
+        if (world.getBlockState(pos).getBlock() instanceof BlockFarmland) world.setBlockState(pos.up(), getStateFromMeta(0));
 
         return true;
     }
 
     @Override
     public boolean canBlockStay(World world, BlockPos pos,IBlockState state) {
-        return (world.getBlockState(pos.down()).getBlock() == this || world.getBlockState(pos.down()).getBlock() == Blocks.FARMLAND) || this.canPlaceBlockAt(world, pos);
+        return (world.getBlockState(pos.down()).getBlock() == this || world.getBlockState(pos.down()).getBlock() instanceof BlockFarmland) || this.canPlaceBlockAt(world, pos);
     }
 
     @Override

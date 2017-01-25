@@ -7,9 +7,9 @@ import net.minecraftforge.fluids.Fluid;
 /**
  * Created by EwyBoy
  **/
-public class UnknownFluidBlock extends BlockFluidClassic {
+public class CTFluidBlock extends BlockFluidClassic {
 
-    public UnknownFluidBlock(Fluid fluid, Material material) {
+    public CTFluidBlock(Fluid fluid, Material material) {
         super(fluid, material);
     }
 }

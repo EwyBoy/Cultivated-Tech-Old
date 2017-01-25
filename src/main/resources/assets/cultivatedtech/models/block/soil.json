@@ -1,6 +1,8 @@
 {
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "cultivatedtech:blocks/soil"
-  }
+    "parent": "block/farmland",
+    "textures": {
+        "particle": "cultivatedtech:blocks/soil",
+        "dirt":     "cultivatedtech:blocks/soil",
+        "top":      "cultivatedtech:blocks/soil"
+    }
 }
