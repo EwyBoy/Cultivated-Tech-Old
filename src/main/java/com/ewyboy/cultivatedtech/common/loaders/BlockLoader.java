@@ -30,9 +30,9 @@ public class BlockLoader {
     public static BlockFluidClassic ethanol = new UnknownFluidBlock(FluidLoader.ETHANOL, UnknownMaterials.FUEL);
 
     //Blocks
+    public static BlockHemp blockHemp = new BlockHemp();
     public static BlockBarrel barrel = new BlockBarrel();
     public static BlockSoil soil = new BlockSoil();
-    public static BlockHemp blockHemp = new BlockHemp();
 
     //Crops
     public static BlockCropHemp cropHemp = new BlockCropHemp();

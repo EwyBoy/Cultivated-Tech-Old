@@ -1,7 +1,7 @@
 {
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "cultivatedtech:blocks/hemp_block_top",
-        "side": "cultivatedtech:blocks/hemp_block_side"
-    }
+   "parent": "block/cube_column",
+   "textures": {
+       "end": "cultivatedtech:blocks/hemp_block_top",
+       "side": "cultivatedtech:blocks/hemp_block_side"
+   }
 }
