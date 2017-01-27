@@ -1,7 +1,12 @@
 package com.ewyboy.cultivatedtech.common.blocks;
 
+import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaCamouflageUser;
+import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaInformationUser;
 import com.ewyboy.cultivatedtech.common.loaders.ItemLoader;
 import javax.annotation.Nullable;
+
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -20,7 +25,7 @@ import java.util.List;
 /**
  * Created by EwyBoy
  **/
-public class BlockBarrel extends BlockBaseModeled {
+public class BlockBarrel extends BlockBaseModeled implements IWailaInformationUser, IWailaCamouflageUser {
 
     public static final PropertyBool ENABLED = PropertyBool.create("enabled");
 
@@ -72,5 +77,16 @@ public class BlockBarrel extends BlockBaseModeled {
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, FACING, ENABLED);
+    }
+
+    @Override
+    public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        if (accessor.getBlockState().getValue(ENABLED)) currenttip.add("Enabled");
+        return currenttip;
+    }
+
+    @Override
+    public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        return new ItemStack(this);
     }
 }

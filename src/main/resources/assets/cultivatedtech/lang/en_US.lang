@@ -8,7 +8,9 @@ itemGroup.cultivatedtech=Cultivated Tech
 # -  Blocks - #
 tile.cultivatedtech.barrel.name=Barrel
 tile.cultivatedtech.crophemp.name=Industrial Hemp
-
+tile.cultivatedtech.blockhemp.name=Hemp Bale
+tile.cultivatedtech.blockhemp.name=Hemp Bale
+tile.cultivatedtech.soil.name=Industrial Soil
 
 #  - Items  - #
 item.cultivatedtech.barreltap.name=Barrel Tap

@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Created by EwyBoy
- **/
-public interface IWailaUser {
-    List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config);
+ */
+public interface IWailaCamouflageUser {
+    ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config);
 }

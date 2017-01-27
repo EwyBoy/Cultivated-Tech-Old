@@ -37,6 +37,7 @@ public class CultivatedTech {
         FluidLoader.init();
         BlockLoader.init();
         ItemLoader.init();
+        TileEntityLoader.init();
         RecipeLoader.registerRecipes();
         proxy.preInit(event);
     }

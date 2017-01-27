@@ -4,7 +4,6 @@ package com.ewyboy.cultivatedtech.common.compatibilities.waila;
  * Created by EwyBoy
  **/
 
-import com.ewyboy.cultivatedtech.common.blocks.BlockBarrel;
 import com.ewyboy.cultivatedtech.common.loaders.BlockLoader;
 import com.ewyboy.cultivatedtech.common.utility.Reference;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -40,10 +39,8 @@ public class WailaCompatibility implements IWailaDataProvider {
         }
 
         if (!loaded) {
-            registrar.registerStackProvider(INSTANCE,   BlockBarrel.class);
-            registrar.registerHeadProvider(INSTANCE,    BlockBarrel.class);
-            registrar.registerBodyProvider(INSTANCE,    BlockBarrel.class);
-            registrar.registerTailProvider(INSTANCE,    BlockBarrel.class);
+            BlockLoader.BLOCKS.values().stream().filter(block -> block instanceof IWailaInformationUser).forEachOrdered(block -> registrar.registerBodyProvider(INSTANCE, block.getClass()));
+            BlockLoader.BLOCKS.values().stream().filter(block -> block instanceof IWailaCamouflageUser).forEachOrdered(block -> registrar.registerStackProvider(INSTANCE, block.getClass()));
             loaded = true;
         }
     }
@@ -61,7 +58,8 @@ public class WailaCompatibility implements IWailaDataProvider {
 
     @Override
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        return new ItemStack(BlockLoader.barrel);
+        Block block = accessor.getBlock();
+        return block instanceof IWailaCamouflageUser ? ((IWailaCamouflageUser) block).getWailaStack(accessor, config) : null;
     }
 
     @Override
@@ -72,9 +70,8 @@ public class WailaCompatibility implements IWailaDataProvider {
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
         Block block = accessor.getBlock();
-        if (block instanceof IWailaUser) {
-            return ((IWailaUser) block).getWailaBody(itemStack, currenttip, accessor, config);
-        }
+        if (block instanceof IWailaInformationUser) return ((IWailaInformationUser) block).getWailaBody(itemStack, currenttip, accessor, config);
+
         return currenttip;
     }
 

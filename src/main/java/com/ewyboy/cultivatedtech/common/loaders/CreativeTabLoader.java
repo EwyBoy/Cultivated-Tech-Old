@@ -14,7 +14,7 @@ public class CreativeTabLoader {
 
     public static CreativeTabs tabUnknown = new CreativeTabs (MODID) {
         public ItemStack getIconItemStack() {
-            return new ItemStack(Blocks.STRUCTURE_VOID);
+            return new ItemStack(BlockLoader.barrel);
         }
         @Override
         public Item getTabIconItem() {return null;}

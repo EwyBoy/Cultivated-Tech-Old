@@ -1,8 +1,13 @@
 package com.ewyboy.cultivatedtech.common.blocks;
 
+import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaCamouflageUser;
+import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaInformationUser;
 import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
-import com.ewyboy.cultivatedtech.common.tiles.TileSoil;
+import com.ewyboy.cultivatedtech.common.tiles.TileEntitySoil;
+import com.ewyboy.cultivatedtech.common.utility.Logger;
 import com.ewyboy.cultivatedtech.common.utility.interfaces.IBlockRenderer;
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.ITileEntityProvider;
@@ -31,17 +36,30 @@ import java.util.Random;
 /**
  * Created by EwyBoy
  */
-public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBlockRenderer {
+public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBlockRenderer, IWailaInformationUser, IWailaCamouflageUser {
 
     public BlockSoil() {
         super();
         setCreativeTab(CreativeTabLoader.tabUnknown);
     }
 
+    @Override
+    public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        TileEntitySoil soil = getTE(accessor.getWorld(), accessor.getPosition());
+
+        currenttip.add("Growth: " + accessor.getNBTInteger(accessor.getNBTData(), "growth"));
+        currenttip.add("Fertile: " + accessor.getNBTInteger(accessor.getNBTData(), "fertile"));
+
+        return currenttip;
+    }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+    public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        return new ItemStack(this);
     }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {}
 
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
@@ -49,10 +67,35 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
     }
 
     @Override
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+        int moisture = state.getValue(MOISTURE);
+
+        TileEntitySoil soil = getTE(world, pos);
+
+        soil.setStatFertile(soil.getStatFertile()+1);
+        Logger.info(soil.getStatFertile());
+/*
+        IBlockState iblockstate = soil.getWorld().getBlockState(soil.getPos());
+        soil.getWorld().notifyBlockUpdate(soil.getPos(), iblockstate, iblockstate, 3);*/
+
+        if (!this.hasLiquidSource(world, pos) && !world.isRainingAt(pos.up())) {
+            if (moisture > 0) {
+                world.setBlockState(pos, state.withProperty(MOISTURE, moisture - 1), 2);
+            }
+        } else if (moisture < 7) {
+            world.setBlockState(pos, state.withProperty(MOISTURE, 7), 2);
+        }
+    }
+
+    @Override
     public boolean isFertile(World world, BlockPos pos) {
         return super.isFertile(world, pos);
     }
 
+    private boolean hasCrops(World worldIn, BlockPos pos) {
+        Block block = worldIn.getBlockState(pos.up()).getBlock();
+        return block instanceof IPlantable && canSustainPlant(worldIn.getBlockState(pos), worldIn, pos, EnumFacing.UP, (IPlantable)block);
+    }
 
     //TODO modify this to accept freshwater
     private boolean hasLiquidSource(World worldIn, BlockPos pos) {
@@ -67,8 +110,13 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
     @Override
     public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {}
 
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
-        super.neighborChanged(state, worldIn, pos, blockIn);
+
+    @Override
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {}
+
+    @Override
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+        return new ItemStack(this);
     }
 
     @Nullable
@@ -99,8 +147,12 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
         return new int[0];
     }
 
+    private TileEntitySoil getTE(IBlockAccess world, BlockPos pos) {
+        return (TileEntitySoil) world.getTileEntity(pos);
+    }
+
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileSoil();
+        return new TileEntitySoil();
     }
 }
