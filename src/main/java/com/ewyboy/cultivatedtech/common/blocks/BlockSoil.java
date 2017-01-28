@@ -45,7 +45,6 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
 
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        TileEntitySoil soil = getTE(accessor.getWorld(), accessor.getPosition());
 
         currenttip.add("Growth: " + accessor.getNBTInteger(accessor.getNBTData(), "growth"));
         currenttip.add("Fertile: " + accessor.getNBTInteger(accessor.getNBTData(), "fertile"));
@@ -73,10 +72,8 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
         TileEntitySoil soil = getTE(world, pos);
 
         soil.setStatFertile(soil.getStatFertile()+1);
+        world.notifyBlockUpdate(pos, state, state, 3);
         Logger.info(soil.getStatFertile());
-/*
-        IBlockState iblockstate = soil.getWorld().getBlockState(soil.getPos());
-        soil.getWorld().notifyBlockUpdate(soil.getPos(), iblockstate, iblockstate, 3);*/
 
         if (!this.hasLiquidSource(world, pos) && !world.isRainingAt(pos.up())) {
             if (moisture > 0) {

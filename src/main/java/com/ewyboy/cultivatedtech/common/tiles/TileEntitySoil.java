@@ -1,9 +1,9 @@
 package com.ewyboy.cultivatedtech.common.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ITickable;
 
 import javax.annotation.Nullable;
 
@@ -23,6 +23,7 @@ public class TileEntitySoil extends TileEntity {
 
     public void setStatFertile(int statFertile) {
         this.statFertile = statFertile;
+        this.markDirty();
     }
 
     public int getStatGrowth() {
@@ -31,15 +32,23 @@ public class TileEntitySoil extends TileEntity {
 
     public void setStatGrowth(int statGrowth) {
         this.statGrowth = statGrowth;
+        this.markDirty();
     }
 
     @Nullable
+    @Override
     public SPacketUpdateTileEntity getUpdatePacket() {
-        return new SPacketUpdateTileEntity(this.pos, 9, this.getUpdateTag());
+        return new SPacketUpdateTileEntity(this.pos, 1, this.getUpdateTag());
     }
 
+    @Override
     public NBTTagCompound getUpdateTag() {
         return this.writeToNBT(new NBTTagCompound());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+        readFromNBT(pkt.getNbtCompound());
     }
 
     @Override
