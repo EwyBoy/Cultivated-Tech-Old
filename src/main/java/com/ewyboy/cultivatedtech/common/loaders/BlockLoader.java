@@ -1,6 +1,7 @@
 package com.ewyboy.cultivatedtech.common.loaders;
 
 import com.ewyboy.cultivatedtech.common.blocks.BlockBarrel;
+import com.ewyboy.cultivatedtech.common.blocks.BlockEcoflamer;
 import com.ewyboy.cultivatedtech.common.blocks.BlockHemp;
 import com.ewyboy.cultivatedtech.common.blocks.BlockSoil;
 import com.ewyboy.cultivatedtech.common.blocks.crops.BlockCropHemp;
@@ -32,6 +33,8 @@ public class BlockLoader {
     //Blocks
     public static BlockHemp blockHemp = new BlockHemp();
     public static BlockBarrel barrel = new BlockBarrel();
+    public static BlockEcoflamer ecoflamer = new BlockEcoflamer();
+
     public static BlockSoil soil = new BlockSoil();
 
     //Crops
