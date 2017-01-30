@@ -1,6 +1,7 @@
 package com.ewyboy.cultivatedtech.common.loaders;
 
 import com.ewyboy.cultivatedtech.common.items.ItemBase;
+import com.ewyboy.cultivatedtech.common.items.ItemBaseMeta;
 import com.ewyboy.cultivatedtech.common.items.ItemBaseSeeds;
 import com.ewyboy.cultivatedtech.common.utility.Reference;
 import com.ewyboy.cultivatedtech.common.utility.interfaces.IItemRenderer;
@@ -23,6 +24,9 @@ public class ItemLoader {
 
     public static ItemBase hemp = new ItemBase("hemp");
     public static ItemBase barrelTap = new ItemBase("barrelTap");
+    public static ItemBaseMeta brick = new ItemBaseMeta("brick", 6);
+    public static ItemBase witheredBrick = new ItemBase("witheredbrick");
+    public static ItemBase enderiumBrick = new ItemBase("enderiumbrick");
     public static ItemBaseSeeds seedHemp = new ItemBaseSeeds("seedHemp", BlockLoader.cropHemp, BlockLoader.soil);
 
     public static void init() {

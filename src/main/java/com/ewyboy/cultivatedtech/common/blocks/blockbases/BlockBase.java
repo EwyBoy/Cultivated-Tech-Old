@@ -1,5 +1,6 @@
-package com.ewyboy.cultivatedtech.common.blocks;
+package com.ewyboy.cultivatedtech.common.blocks.blockbases;
 
+import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
 import com.ewyboy.cultivatedtech.common.utility.interfaces.IBlockRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -19,14 +20,15 @@ public class BlockBase extends Block implements IBlockRenderer {
 
     public BlockBase(Material material) {
         super(material);
+        setCreativeTab(CreativeTabLoader.tabUnknown);
     }
 
     public int[] modelMetas() {
         return new int[0];
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerBlockRenderer() {
         ModelLoader.setCustomStateMapper(this, new DefaultStateMapper() {
             @Override

@@ -1,5 +1,6 @@
 package com.ewyboy.cultivatedtech.common.blocks;
 
+import com.ewyboy.cultivatedtech.common.blocks.blockbases.BlockBaseModeledFacing;
 import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaCamouflageUser;
 import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaInformationUser;
 import com.ewyboy.cultivatedtech.common.loaders.ItemLoader;
@@ -25,7 +26,7 @@ import java.util.List;
 /**
  * Created by EwyBoy
  **/
-public class BlockBarrel extends BlockBaseModeled implements IWailaInformationUser, IWailaCamouflageUser {
+public class BlockBarrel extends BlockBaseModeledFacing implements IWailaInformationUser, IWailaCamouflageUser {
 
     public static final PropertyBool ENABLED = PropertyBool.create("enabled");
 

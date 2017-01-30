@@ -45,7 +45,6 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
 
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-
         currenttip.add("Growth: " + accessor.getNBTInteger(accessor.getNBTData(), "growth"));
         currenttip.add("Fertile: " + accessor.getNBTInteger(accessor.getNBTData(), "fertile"));
 

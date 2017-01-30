@@ -4,12 +4,14 @@ import com.ewyboy.cultivatedtech.common.blocks.BlockBarrel;
 import com.ewyboy.cultivatedtech.common.blocks.BlockEcoflamer;
 import com.ewyboy.cultivatedtech.common.blocks.BlockHemp;
 import com.ewyboy.cultivatedtech.common.blocks.BlockSoil;
+import com.ewyboy.cultivatedtech.common.blocks.blockbases.BlockBase;
 import com.ewyboy.cultivatedtech.common.blocks.crops.BlockCropHemp;
 import com.ewyboy.cultivatedtech.common.blocks.fluid.CTFluidBlock;
 import com.ewyboy.cultivatedtech.common.material.UnknownMaterials;
 import com.ewyboy.cultivatedtech.common.utility.Reference;
 import com.ewyboy.cultivatedtech.common.utility.interfaces.IBlockRenderer;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -32,6 +34,8 @@ public class BlockLoader {
 
     //Blocks
     public static BlockHemp blockHemp = new BlockHemp();
+    public static BlockBase blockWitheredBrick = new BlockBase(Material.ROCK);
+    public static BlockBase blockEnderiumBrick = new BlockBase(Material.ROCK);
     public static BlockBarrel barrel = new BlockBarrel();
     public static BlockEcoflamer ecoflamer = new BlockEcoflamer();
 
