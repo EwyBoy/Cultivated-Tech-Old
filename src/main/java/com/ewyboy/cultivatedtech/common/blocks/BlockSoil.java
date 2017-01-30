@@ -72,7 +72,6 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
 
         soil.setStatFertile(soil.getStatFertile()+1);
         world.notifyBlockUpdate(pos, state, state, 3);
-        Logger.info(soil.getStatFertile());
 
         if (!this.hasLiquidSource(world, pos) && !world.isRainingAt(pos.up())) {
             if (moisture > 0) {

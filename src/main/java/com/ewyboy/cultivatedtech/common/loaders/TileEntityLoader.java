@@ -1,5 +1,7 @@
 package com.ewyboy.cultivatedtech.common.loaders;
 
+import com.ewyboy.cultivatedtech.common.tiles.TileEntityEcoflamer;
+import com.ewyboy.cultivatedtech.common.tiles.TileEntityRegressionFurnace;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntitySoil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -16,6 +18,8 @@ public class TileEntityLoader {
     public static final HashMap<String, TileEntity> TILE_ENTITIES = new HashMap<>();
 
     public static TileEntitySoil tileEntitySoil = new TileEntitySoil();
+    public static TileEntityEcoflamer tileEcoflamer = new TileEntityEcoflamer();
+    public static TileEntityRegressionFurnace tileRegressionFurnace = new TileEntityRegressionFurnace();
 
     public static void init() {
         registerTileEntity();

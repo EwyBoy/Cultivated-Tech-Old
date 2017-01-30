@@ -1,9 +1,6 @@
 package com.ewyboy.cultivatedtech.common.loaders;
 
-import com.ewyboy.cultivatedtech.common.blocks.BlockBarrel;
-import com.ewyboy.cultivatedtech.common.blocks.BlockEcoflamer;
-import com.ewyboy.cultivatedtech.common.blocks.BlockHemp;
-import com.ewyboy.cultivatedtech.common.blocks.BlockSoil;
+import com.ewyboy.cultivatedtech.common.blocks.*;
 import com.ewyboy.cultivatedtech.common.blocks.blockbases.BlockBase;
 import com.ewyboy.cultivatedtech.common.blocks.crops.BlockCropHemp;
 import com.ewyboy.cultivatedtech.common.blocks.fluid.CTFluidBlock;
@@ -30,19 +27,19 @@ public class BlockLoader {
     public static final HashMap<String, Block> BLOCKS = new HashMap<>();
 
     //Fluids
-    public static BlockFluidClassic ethanol = new CTFluidBlock(FluidLoader.ETHANOL, UnknownMaterials.FUEL);
+    public static final BlockFluidClassic ethanol = new CTFluidBlock(FluidLoader.ETHANOL, UnknownMaterials.FUEL);
 
     //Blocks
-    public static BlockHemp blockHemp = new BlockHemp();
-    public static BlockBase blockWitheredBrick = new BlockBase(Material.ROCK);
-    public static BlockBase blockEnderiumBrick = new BlockBase(Material.ROCK);
-    public static BlockBarrel barrel = new BlockBarrel();
-    public static BlockEcoflamer ecoflamer = new BlockEcoflamer();
-
-    public static BlockSoil soil = new BlockSoil();
+    public static final BlockHemp blockHemp = new BlockHemp();
+    public static final BlockBase blockWitheredBrick = new BlockBase(Material.ROCK);
+    public static final BlockBase blockEnderiumBrick = new BlockBase(Material.ROCK);
+    public static final BlockBarrel barrel = new BlockBarrel();
+    public static final BlockEcoflamer ecoflamer = new BlockEcoflamer();
+    public static final BlockRegressionFurnace regressionFurnace = new BlockRegressionFurnace();
+    public static final BlockSoil soil = new BlockSoil();
 
     //Crops
-    public static BlockCropHemp cropHemp = new BlockCropHemp();
+    public static final BlockCropHemp cropHemp = new BlockCropHemp();
 
     public static void init() {
         registerBlocks();
