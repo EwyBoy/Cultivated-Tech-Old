@@ -73,7 +73,7 @@ public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IE
             if (grassBurned) {
                 setRF(getRF() + 50);
                 worldObj.notifyBlockUpdate(pos, state, state,3);
-                SoundHelper.brodcastServerSidedSoundToAllPlayerNerby(worldObj, targetPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 9);
+                SoundHelper.broadcastServerSidedSoundToAllPlayerNearby(worldObj, targetPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 9);
             }
         }
     }
@@ -124,6 +124,6 @@ public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IE
 
     @Override
     public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
-        return 0;
+        return this.extractEnergy(from,maxExtract, false);
     }
 }

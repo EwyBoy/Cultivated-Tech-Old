@@ -1,14 +1,14 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "cultivatedtech:barrel"
+    "model": "cultivatedtech:blockbarrel"
   },
   "variants": {
     "normal": [{
-      "model": "cultivatedtech:barrel"
+      "model": "cultivatedtech:blockbarrel"
     }],
     "inventory": [{
-      "model": "cultivatedtech:barrel",
+      "model": "cultivatedtech:blockbarrel",
       "transform": "forge:default-block"
     }],
     "facing": {
@@ -22,7 +22,7 @@
     "enabled": {
       "false": {},
       "true": {
-        "model": "cultivatedtech:cage"
+        "model": "cultivatedtech:blockcage"
       }
     }
   }

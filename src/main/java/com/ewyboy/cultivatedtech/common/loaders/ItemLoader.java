@@ -3,6 +3,7 @@ package com.ewyboy.cultivatedtech.common.loaders;
 import com.ewyboy.cultivatedtech.common.items.ItemBase;
 import com.ewyboy.cultivatedtech.common.items.ItemBaseMeta;
 import com.ewyboy.cultivatedtech.common.items.ItemBaseSeeds;
+import com.ewyboy.cultivatedtech.common.items.ItemTestSword;
 import com.ewyboy.cultivatedtech.common.utility.Reference;
 import com.ewyboy.cultivatedtech.common.utility.interfaces.IItemRenderer;
 import net.minecraft.init.Blocks;
@@ -23,11 +24,12 @@ public class ItemLoader {
     public static final HashMap<String, Item> ITEMS = new HashMap<>();
 
     public static ItemBase hemp = new ItemBase("hemp");
-    public static ItemBase barrelTap = new ItemBase("barrelTap");
+    public static ItemBase barrelTap = new ItemBase("barreltap");
     public static ItemBaseMeta brick = new ItemBaseMeta("brick", 6);
     public static ItemBase witheredBrick = new ItemBase("witheredbrick");
-    public static ItemBase enderiumBrick = new ItemBase("enderiumbrick");
-    public static ItemBaseSeeds seedHemp = new ItemBaseSeeds("seedHemp", BlockLoader.cropHemp, BlockLoader.soil);
+    public static ItemBase enderizedBrick = new ItemBase("enderizedbrick");
+    public static ItemBaseSeeds seedHemp = new ItemBaseSeeds("seedhemp", BlockLoader.cropHemp, BlockLoader.soil);
+    public static ItemTestSword testSword = new ItemTestSword(Item.ToolMaterial.WOOD);
 
     public static void init() {
         registerItems();
@@ -45,7 +47,7 @@ public class ItemLoader {
                 Object obj = field.get(null);
                 if (obj instanceof Item) {
                     Item item = (Item) obj;
-                    String name = field.getName().toLowerCase(Locale.ENGLISH);
+                    String name = "item" + field.getName().toLowerCase(Locale.ENGLISH);
                     registerItem(item, name);
                 }
             }

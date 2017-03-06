@@ -30,13 +30,14 @@ public class BlockLoader {
     public static final BlockFluidClassic ethanol = new CTFluidBlock(FluidLoader.ETHANOL, UnknownMaterials.FUEL);
 
     //Blocks
-    public static final BlockHemp blockHemp = new BlockHemp();
-    public static final BlockBase blockWitheredBrick = new BlockBase(Material.ROCK);
-    public static final BlockBase blockEnderiumBrick = new BlockBase(Material.ROCK);
-    public static final BlockBarrel barrel = new BlockBarrel();
-    public static final BlockEcoflamer ecoflamer = new BlockEcoflamer();
-    public static final BlockRegressionFurnace regressionFurnace = new BlockRegressionFurnace();
+    public static final BlockHemp hemp = new BlockHemp();
     public static final BlockSoil soil = new BlockSoil();
+    public static final BlockBarrel barrel = new BlockBarrel();
+    public static final BlockFireplace fireplace = new BlockFireplace();
+    public static final BlockEcoflamer ecoflamer = new BlockEcoflamer();
+    public static final BlockBase witheredBrick = new BlockBase(Material.ROCK);
+    //public static final BlockBase enderizedBrick = new BlockBase(Material.ROCK);
+    public static final BlockRegressionFurnace regressionFurnace = new BlockRegressionFurnace();
 
     //Crops
     public static final BlockCropHemp cropHemp = new BlockCropHemp();
@@ -63,7 +64,7 @@ public class BlockLoader {
                 Object obj = field.get(null);
                 if (obj instanceof Block) {
                     Block block = (Block) obj;
-                    String name = field.getName().toLowerCase(Locale.ENGLISH);
+                    String name =  "block" + field.getName().toLowerCase(Locale.ENGLISH);
                     registerBlock(block, name);
                 }
             }

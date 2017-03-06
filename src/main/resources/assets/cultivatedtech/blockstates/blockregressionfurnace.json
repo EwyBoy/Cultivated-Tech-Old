@@ -1,14 +1,14 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "cultivatedtech:regressionfurnace"
+    "model": "cultivatedtech:blockregressionfurnace"
   },
   "variants": {
     "normal": [{
-      "model": "cultivatedtech:regressionfurnace"
+      "model": "cultivatedtech:blockregressionfurnace"
     }],
     "inventory": [{
-      "model": "cultivatedtech:regressionfurnace",
+      "model": "cultivatedtech:blockregressionfurnace",
       "transform": "forge:default-block"
     }],
     "facing": {

@@ -29,6 +29,14 @@ minecraft {
 
 repositories {
 	maven {
+		name 'tesla'
+        url 'http://maven.epoxide.xyz'
+    }
+	maven {
+		name 'enderio'
+		url = "http://maven.tterrag.com"
+	}
+	maven {
   		name 'jei'
   		url "http://dvs1.progwml6.com/files/maven"
     }
@@ -36,10 +44,18 @@ repositories {
         name 'waila'
         url 'http://mobiusstrip.eu/maven'
     }
+	ivy {
+       url "http://ae-mod.info/builds"
+       layout "pattern", {
+           artifact "[module]-[revision](-[classifier])(.[ext])"
+       }
+	}
 }
 
 dependencies {
-    deobfCompile "mcp.mobius.waila:Waila:1.7.0-B3_1.9.4"
+		deobfCompile "com.enderio.core:EnderCore:1.10.2-0.4.1.65-beta"
+		deobfCompile "com.enderio:EnderIO:1.10.2-3.1.165"
+		deobfCompile "mcp.mobius.waila:Waila:1.7.0-B3_1.9.4"
 		deobfCompile "mezz.jei:jei_1.10.2:3.13.6.389:api"
 		runtime "mezz.jei:jei_1.10.2:3.13.6.389"
 }

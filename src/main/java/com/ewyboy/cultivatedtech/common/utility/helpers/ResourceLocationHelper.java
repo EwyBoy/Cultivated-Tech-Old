@@ -1,5 +1,6 @@
-package com.ewyboy.cultivatedtech.common.utility;
+package com.ewyboy.cultivatedtech.common.utility.helpers;
 
+import com.ewyboy.cultivatedtech.common.utility.Reference;
 import net.minecraft.util.ResourceLocation;
 
 /**

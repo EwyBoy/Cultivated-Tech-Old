@@ -1,6 +1,5 @@
 package com.ewyboy.cultivatedtech.common.utility.helpers;
 
-import net.minecraft.init.SoundEvents;
 import net.minecraft.network.play.server.SPacketSoundEffect;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -18,13 +17,15 @@ public class SoundHelper {
 
     private static Random random = new Random();
 
-    public static void brodcastServerSidedSoundToAllPlayerNerby(World world, BlockPos pos, SoundEvent sound, SoundCategory soundCategory, int radius) {
+    public static void broadcastServerSidedSoundToAllPlayerNearby(World world, BlockPos pos, SoundEvent sound, SoundCategory soundCategory, int radius) {
         FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().sendToAllNearExcept(null,
-                (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(),
-                radius, world.provider.getDimension(),
-                new SPacketSoundEffect(SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS,
-                        (double) pos.getX(), (double)pos.getY(), (double)pos.getZ(),
-                        1.0f, (float) MathHelper.getRandomDoubleInRange(random, -1.0d, 1.0d))
+            (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), radius, world.provider.getDimension(),
+                new SPacketSoundEffect(sound, soundCategory,
+                    (double) pos.getX(), (double)pos.getY(), (double)pos.getZ(),
+                        1.0f, (float) MathHelper.getRandomDoubleInRange(
+                                random, -1.0d, 1.0d
+                        )
+                )
         );
     }
 }
