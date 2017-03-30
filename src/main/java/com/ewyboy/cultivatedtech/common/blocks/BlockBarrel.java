@@ -4,8 +4,6 @@ import com.ewyboy.cultivatedtech.common.blocks.blockbases.BlockBaseModeledFacing
 import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaCamouflageUser;
 import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaInformationUser;
 import com.ewyboy.cultivatedtech.common.loaders.ItemLoader;
-import javax.annotation.Nullable;
-
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.block.material.Material;
@@ -21,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -40,6 +39,7 @@ public class BlockBarrel extends BlockBaseModeledFacing implements IWailaInforma
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         List<ItemStack> list = super.getDrops(world, pos, state, fortune);
         if(state.getValue(ENABLED)) list.add(new ItemStack(ItemLoader.barrelTap));
+
         return list;
     }
 

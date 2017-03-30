@@ -18,7 +18,7 @@ public class TileEntityLoader {
     public static final HashMap<String, TileEntity> TILE_ENTITIES = new HashMap<>();
 
     public static TileEntitySoil tileEntitySoil = new TileEntitySoil();
-    public static TileEntityEcoflamer tileEcoflamer = new TileEntityEcoflamer();
+    public static TileEntityEcoflamer tileEcoflamer = new TileEntityEcoflamer(16000);
     public static TileEntityRegressionFurnace tileRegressionFurnace = new TileEntityRegressionFurnace();
 
     public static void init() {

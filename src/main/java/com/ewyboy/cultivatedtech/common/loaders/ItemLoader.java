@@ -3,10 +3,8 @@ package com.ewyboy.cultivatedtech.common.loaders;
 import com.ewyboy.cultivatedtech.common.items.ItemBase;
 import com.ewyboy.cultivatedtech.common.items.ItemBaseMeta;
 import com.ewyboy.cultivatedtech.common.items.ItemBaseSeeds;
-import com.ewyboy.cultivatedtech.common.items.ItemTestSword;
 import com.ewyboy.cultivatedtech.common.utility.Reference;
 import com.ewyboy.cultivatedtech.common.utility.interfaces.IItemRenderer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -29,7 +27,6 @@ public class ItemLoader {
     public static ItemBase witheredBrick = new ItemBase("witheredbrick");
     public static ItemBase enderizedBrick = new ItemBase("enderizedbrick");
     public static ItemBaseSeeds seedHemp = new ItemBaseSeeds("seedhemp", BlockLoader.cropHemp, BlockLoader.soil);
-    public static ItemTestSword testSword = new ItemTestSword(Item.ToolMaterial.WOOD);
 
     public static void init() {
         registerItems();

@@ -1,6 +1,8 @@
 package com.ewyboy.cultivatedtech.common.tiles;
 
+import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyProvider;
+import cofh.api.energy.IEnergyReceiver;
 import com.ewyboy.cultivatedtech.common.loaders.BlockLoader;
 import com.ewyboy.cultivatedtech.common.utility.helpers.SoundHelper;
 import net.minecraft.block.BlockDirt;
@@ -11,6 +13,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
@@ -25,29 +28,28 @@ import java.util.Random;
  */
 public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IEnergyProvider {
 
-    public TileEntityEcoflamer() {}
-
+    int capacity;
+    EnergyStorage storage = new EnergyStorage(capacity, 150);
     private Random random = new Random();
 
-    private int RF;
-    private int maxRF = 5000;
+    public TileEntityEcoflamer() {}
+
+    public TileEntityEcoflamer(int capacity) {
+        this.capacity = capacity;
+    }
+
     private IBlockState state = BlockLoader.ecoflamer.getDefaultState();
-
-    public int getRF() {
-        return RF;
-    }
-
-    public void setRF(int RF) {
-        this.RF = RF;
-        this.markDirty();
-    }
-
-    public int getMaxRF() {
-        return maxRF;
-    }
 
     @Override
     public void update() {
+        for (EnumFacing facing : EnumFacing.VALUES) {
+            TileEntity tileEntity = worldObj.getTileEntity(pos.offset(facing));
+            if (tileEntity instanceof IEnergyReceiver) {
+                int received = ((IEnergyReceiver) tileEntity).receiveEnergy(facing.getOpposite(), extractEnergy(facing, storage.getMaxExtract(), true), false);
+                extractEnergy(facing, received, false);
+            }
+        }
+
         int probabilityPercentage = 5;
         double prob = probabilityPercentage * 0.01;
 
@@ -69,9 +71,8 @@ public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IE
                         grassBurned = true;
                     }
                 }
-            }
-            if (grassBurned) {
-                setRF(getRF() + 50);
+            } if (grassBurned) {
+                storage.modifyEnergyStored(2000);
                 worldObj.notifyBlockUpdate(pos, state, state,3);
                 SoundHelper.broadcastServerSidedSoundToAllPlayerNearby(worldObj, targetPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 9);
             }
@@ -96,34 +97,33 @@ public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IE
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        super.writeToNBT(tag);
-        tag.setInteger("rf", getRF());
-        return tag;
+        tag.setInteger("energy", storage.getEnergyStored());
+        return super.writeToNBT(tag);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tag) {
+        storage.setEnergyStored(tag.getInteger("energy"));
         super.readFromNBT(tag);
-        RF = tag.getInteger("rf");
     }
 
     @Override
-    public boolean canConnectEnergy(EnumFacing facing) {
+    public boolean canConnectEnergy(EnumFacing from) {
         return true;
     }
 
     @Override
     public int getEnergyStored(EnumFacing from) {
-        return RF;
+        return storage.getEnergyStored();
     }
 
     @Override
     public int getMaxEnergyStored(EnumFacing from) {
-        return getMaxRF();
+        return storage.getMaxEnergyStored();
     }
 
     @Override
     public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
-        return this.extractEnergy(from,maxExtract, false);
+        return storage.extractEnergy(maxExtract, simulate);
     }
 }

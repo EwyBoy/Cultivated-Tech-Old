@@ -4,20 +4,14 @@ import com.ewyboy.cultivatedtech.common.blocks.blockbases.BlockBaseModeled;
 import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaCamouflageUser;
 import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaInformationUser;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntityEcoflamer;
-import com.ewyboy.cultivatedtech.common.tiles.TileEntitySoil;
-import com.ewyboy.cultivatedtech.common.utility.Logger;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
-import net.minecraft.block.BlockGrass;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -66,7 +60,7 @@ public class BlockEcoflamer extends BlockBaseModeled implements ITileEntityProvi
 
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        currenttip.add("RF: " + accessor.getNBTInteger(accessor.getNBTData(), "rf") + " / " + getTE(accessor.getWorld(), accessor.getPosition()).getMaxRF());
+        currenttip.add("Energy: " + accessor.getNBTInteger(accessor.getNBTData(), "energy") + " / " + "16000");
         return currenttip;
     }
 }
