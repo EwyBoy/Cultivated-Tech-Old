@@ -4,7 +4,6 @@ package com.ewyboy.cultivatedtech.common.compatibilities.waila;
  * Created by EwyBoy
  **/
 
-import com.ewyboy.cultivatedtech.common.loaders.BlockLoader;
 import com.ewyboy.cultivatedtech.common.utility.Reference;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;

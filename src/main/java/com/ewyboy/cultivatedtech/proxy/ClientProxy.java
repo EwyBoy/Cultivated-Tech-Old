@@ -1,24 +1,18 @@
 package com.ewyboy.cultivatedtech.proxy;
 
-import com.ewyboy.cultivatedtech.common.blocks.fluid.CTFluidBlock;
-import com.ewyboy.cultivatedtech.common.items.ItemBase;
-import com.ewyboy.cultivatedtech.common.loaders.BlockLoader;
-import com.ewyboy.cultivatedtech.common.loaders.ItemLoader;
-import com.ewyboy.cultivatedtech.common.utility.Reference;
-import com.ewyboy.cultivatedtech.common.utility.interfaces.IBlockRenderer;
-import com.ewyboy.cultivatedtech.common.utility.interfaces.IItemRenderer;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
+import com.ewyboy.bibliotheca.common.helpers.ParticleHelper;
+import com.ewyboy.cultivatedtech.client.ParticleEffectSpray;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by EwyBoy
@@ -33,9 +27,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        initFluidModels();
-        initBlockModels();
-        initItemModels();
     }
 
     @Override
@@ -48,37 +39,9 @@ public class ClientProxy extends CommonProxy {
         super.postInit(event);
     }
 
-    private void initItemModels() {
-        ItemLoader.ITEMS.values().stream().filter(item -> item instanceof IItemRenderer).forEachOrdered(item -> {
-            for (int i : ((IItemRenderer) item).modelMetas()) {
-                ModelBakery.registerItemVariants(item, new ResourceLocation(Reference.Info.MODID + ":" + ((ItemBase) item).itemName(i)));
-                ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(Reference.Info.MODID + ":" + ((ItemBase) item).itemName(i), "inventory"));
-            }
-        });
-    }
-
-    private void initBlockModels() {
-        BlockLoader.BLOCKS.values().stream().filter(block -> block instanceof IBlockRenderer).forEachOrdered(block -> {
-            for (int i : ((IBlockRenderer) block).modelMetas()) {
-                ModelBakery.registerItemVariants(Item.getItemFromBlock(block), block.getRegistryName());
-                ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), i, new ModelResourceLocation(block.getRegistryName(), "inventory"));
-            }
-        });
-    }
-
-    private void initFluidModels() {
-        BlockLoader.BLOCKS.values().stream().filter(block -> block instanceof CTFluidBlock).forEachOrdered(block -> registerFluidBlockRendering(block, block.getRegistryName().toString().replace("cultivatedtech:", "")));
-    }
-
     @Override
-    public void registerFluidBlockRendering(Block block, String name) {
-        final ModelResourceLocation fluidLocation = new ModelResourceLocation(Reference.Info.MODID + ":" + "fluids", name);
-        ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-                return fluidLocation;
-            }
-        });
+    @SideOnly(Side.CLIENT)
+    public void spawnLiquidSpray(World world, FluidStack fluid, double x, double y, double z, float scale, float gravity, Vec3d velocity) {
+        ParticleHelper.spawnParticle(new ParticleEffectSpray(world, fluid, x, y, z, scale, gravity, velocity));
     }
-
 }

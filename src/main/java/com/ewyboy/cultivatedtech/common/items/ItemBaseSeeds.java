@@ -1,7 +1,7 @@
 package com.ewyboy.cultivatedtech.common.items;
 
+import com.ewyboy.bibliotheca.common.interfaces.IItemRenderer;
 import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
-import com.ewyboy.cultivatedtech.common.utility.interfaces.IItemRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemSeeds;
@@ -16,7 +16,7 @@ public class ItemBaseSeeds extends ItemSeeds implements IItemRenderer {
 
     public ItemBaseSeeds(String name, Block crops, Block soil) {
         super(crops, soil);
-        setCreativeTab(CreativeTabLoader.tabUnknown);
+        setCreativeTab(CreativeTabLoader.tabCultivatedTech);
     }
 
     public String itemName(int meta){

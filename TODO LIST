@@ -26,5 +26,5 @@ Event Handler
 Add Recipes
 Fix / improve FluidLoader
 Make system for stats
-Documentatin System
+Documentation System
 Brick(meta.equals(7)) -> WitheredBrick -> Enderium Brick

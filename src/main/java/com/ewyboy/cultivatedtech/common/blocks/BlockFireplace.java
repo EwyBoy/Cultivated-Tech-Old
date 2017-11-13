@@ -1,10 +1,15 @@
 package com.ewyboy.cultivatedtech.common.blocks;
 
-import com.ewyboy.cultivatedtech.common.blocks.blockbases.BlockBaseModeledFacing;
+import com.ewyboy.bibliotheca.common.block.BlockBaseModeledFacing;
+import com.ewyboy.bibliotheca.common.compatibilities.waila.IWailaCamouflageUser;
+import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -17,13 +22,14 @@ import java.util.Random;
 /**
  * Created by EwyBoy
  */
-public class BlockFireplace extends BlockBaseModeledFacing {
+public class BlockFireplace extends BlockBaseModeledFacing implements IWailaCamouflageUser {
 
     public static final PropertyInteger STATE = PropertyInteger.create("state", 0, 8);
     public static final PropertyBool FIRE = PropertyBool.create("fire");
 
     public BlockFireplace() {
         super(Material.WOOD);
+        setCreativeTab(CreativeTabLoader.tabCultivatedTech);
     }
 
     @SideOnly(Side.CLIENT)
@@ -35,7 +41,12 @@ public class BlockFireplace extends BlockBaseModeledFacing {
 
         for (int i = 0; i < 10; i++) {
             world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, smokeY, z, 0.0D, 0.0D + (i / 100), 0.0D);
-            world.spawnParticle(EnumParticleTypes.FLAME, MathHelper.getRandomDoubleInRange(rand, -0.15d, 0.15d) + x, flameY, MathHelper.getRandomDoubleInRange(rand, -0.15d, 0.15d) + z, 0.0D, 0.0D, 0.0D, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, MathHelper.nextFloat(rand, -0.15f, 0.15f) + x, flameY, MathHelper.nextFloat(rand, -0.15f, 0.15f) + z, 0.0D, 0.0D, 0.0D, new int[0]);
         }
+    }
+
+    @Override
+    public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        return new ItemStack(this);
     }
 }

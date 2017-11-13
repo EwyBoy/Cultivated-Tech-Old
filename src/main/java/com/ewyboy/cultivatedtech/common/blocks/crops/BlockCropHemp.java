@@ -1,6 +1,8 @@
 package com.ewyboy.cultivatedtech.common.blocks.crops;
 
-import com.ewyboy.cultivatedtech.common.loaders.ItemLoader;
+import com.ewyboy.bibliotheca.common.compatibilities.waila.IWailaCamouflageUser;
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockFarmland;
@@ -20,13 +22,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
-import javax.annotation.Nullable;
 import java.util.Random;
+
+import static com.ewyboy.cultivatedtech.common.register.Register.Items.hemp;
+import static com.ewyboy.cultivatedtech.common.register.Register.Items.seedHemp;
 
 /**
  * Created by EwyBoy
  **/
-public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable {
+public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, IWailaCamouflageUser {
 
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
 
@@ -67,7 +71,7 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable {
     }
 
     protected Item getSeed() {
-        return ItemLoader.seedHemp;
+        return seedHemp;
     }
 
     protected Item getCrop() {
@@ -75,7 +79,7 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         breakBlock(world, pos, state);
 
         int minY = pos.getY() - 4;
@@ -137,6 +141,10 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable {
             dropHemp(world,pos,state);
             world.setBlockToAir(pos.up(2));
         }
+        if(world.getBlockState(pos).getBlock() == this) {
+            dropHemp(world,pos,state);
+            world.setBlockToAir(pos);
+        }
         if(world.getBlockState(pos.down()).getBlock() == this) {
             dropHemp(world,pos,state);
             world.setBlockToAir(pos.down());
@@ -148,34 +156,41 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable {
     }
 
     private void dropHemp(World world, BlockPos pos, IBlockState state){
-        ItemStack out = new ItemStack(ItemLoader.hemp);
-
+        ItemStack out = null;
         int currentState = state.getValue(AGE);
-        //if corn is ripe
-        if( currentState == 7){
+
+        if( currentState == 7) {
             float chance = world.rand.nextFloat();
-            if( chance >= .40){
-                out = new ItemStack(ItemLoader.hemp,2);
-            }else if( chance >=.1){
-                out = new ItemStack(ItemLoader.hemp);
+            if (chance >= 0.40){
+                out = new ItemStack(hemp,2);
+            } else if (chance >=0.1){
+                out = new ItemStack(hemp);
             }
+        } else {
+            out = new ItemStack(seedHemp);
         }
-        spawnAsEntity(world,pos,out);
+
+        if (out != null) spawnAsEntity(world, pos, out);
     }
 
     @Override
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos,IBlockState state) {
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos,IBlockState state) {
         return true;
     }
 
     @Override
-    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        this.updateTick(worldIn, pos, state, rand);
+    public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
+        this.updateTick(world, pos, state, rand);
     }
 
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         entityIn.motionX *=(1.0-(state.getValue(AGE) / 14.0));
         entityIn.motionZ *=(1.0-(state.getValue(AGE) / 14.0));
+    }
+
+    @Override
+    public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        return new ItemStack(getCrop());
     }
 }

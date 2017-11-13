@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cultivatedtech:blockecoflamer3"
+  },
+  "variants": {
+    "normal": [{
+      "model": "cultivatedtech:blockecoflamer3"
+    }],
+    "inventory": [{
+      "model": "cultivatedtech:blockecoflamer3",
+      "transform": "forge:default-block"
+    }],
+    "enabled": {
+      "false": {},
+      "true": {
+        "model": "cultivatedtech:blockecoflamer3"
+      }
+    }
+  }
+}

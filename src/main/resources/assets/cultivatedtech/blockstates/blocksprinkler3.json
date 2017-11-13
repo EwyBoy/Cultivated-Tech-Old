@@ -1,0 +1,29 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cultivatedtech:blocksprinkler3"
+  },
+  "variants": {
+    "normal": [{
+      "model": "cultivatedtech:blocksprinkler3"
+    }],
+    "inventory": [{
+      "model": "cultivatedtech:blocksprinkler3",
+      "transform": "forge:default-block"
+    }],
+    "facing": {
+      "north": {"y" : 90},
+      "south": {"y": 270},
+      "west": {"y": 0},
+      "east": {"y": 180},
+      "up": {"z": 0},
+      "down": {"z": 0}
+    },
+    "enabled": {
+      "false": {},
+      "true": {
+        "model": "cultivatedtech:blocksprinkler3"
+      }
+    }
+  }
+}

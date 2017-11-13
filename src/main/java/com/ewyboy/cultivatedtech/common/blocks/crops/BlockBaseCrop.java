@@ -1,6 +1,6 @@
 package com.ewyboy.cultivatedtech.common.blocks.crops;
 
-import com.ewyboy.cultivatedtech.common.utility.interfaces.IBlockRenderer;
+import com.ewyboy.bibliotheca.common.interfaces.IBlockRenderer;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;

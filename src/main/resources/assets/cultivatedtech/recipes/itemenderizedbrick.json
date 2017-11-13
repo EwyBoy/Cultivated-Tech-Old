@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "cultivatedtech:itemenderizedbrick"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:ender_pearl"
+    },
+    {
+      "item": "cultivatedtech:itemwitheredbrick"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

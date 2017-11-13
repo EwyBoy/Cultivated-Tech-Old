@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "cultivatedtech:blockfireplace"
+  },
+  "pattern": [
+    "scs",
+    "s s",
+    "xxx"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "c": {
+      "item": "minecraft:air"
+    },
+    "x": {
+      "item": "minecraft:log",
+      "data": 0
+    }
+  }
+}

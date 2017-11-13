@@ -1,6 +1,6 @@
-################################
-###         Unknown          ###
-################################
+###############################
+###     Cultivated Tech     ###
+###############################
 
 #  - Creative Tab  - #
 itemGroup.cultivatedtech=Cultivated Tech
@@ -10,7 +10,17 @@ tile.cultivatedtech.blockbarrel.name=Barrel
 tile.cultivatedtech.blockcrophemp.name=Industrial Hemp
 tile.cultivatedtech.blockhemp.name=Hemp Bale
 tile.cultivatedtech.blocksoil.name=Industrial Soil
-tile.cultivatedtech.blockecoflamer.name=Ecoflamer
+tile.cultivatedtech.blockfireplace.name=Fireplace
+tile.cultivatedtech.blockenderizedbrick.name=Enderized Bricks
+tile.cultivatedtech.blockwitheredbrick.name=Withered Bricks
+tile.cultivatedtech.blockecoflamer1.name=Ecoflamer
+tile.cultivatedtech.blockecoflamer2.name=Ecoflamer
+tile.cultivatedtech.blockecoflamer3.name=Ecoflamer
+tile.cultivatedtech.blocksprinkler1.name=Sprinkler
+tile.cultivatedtech.blocksprinkler2.name=Sprinkler
+tile.cultivatedtech.blocksprinkler3.name=Sprinkler
+
+#tile.cultivatedtech.block.name=
 
 #  - Items  - #
 item.cultivatedtech.itembarreltap.name=Barrel Tap
@@ -20,3 +30,5 @@ item.cultivatedtech.itembrick.name=Brick
 item.cultivatedtech.itembrick.name=Brick
 item.cultivatedtech.itemwitheredbrick.name=Withered Brick
 item.cultivatedtech.itemenderizedbrick.name=Enderized Brick
+
+#item.cultivatedtech.item.name=

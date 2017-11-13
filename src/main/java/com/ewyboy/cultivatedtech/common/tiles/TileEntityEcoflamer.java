@@ -1,13 +1,14 @@
 package com.ewyboy.cultivatedtech.common.tiles;
 
-import cofh.api.energy.EnergyStorage;
-import cofh.api.energy.IEnergyProvider;
-import cofh.api.energy.IEnergyReceiver;
-import com.ewyboy.cultivatedtech.common.loaders.BlockLoader;
-import com.ewyboy.cultivatedtech.common.utility.helpers.SoundHelper;
-import net.minecraft.block.BlockDirt;
-import net.minecraft.block.BlockGrass;
+import cofh.redstoneflux.api.IEnergyProvider;
+import cofh.redstoneflux.api.IEnergyReceiver;
+import cofh.redstoneflux.impl.EnergyStorage;
+import com.ewyboy.bibliotheca.common.helpers.SoundHelper;
+import com.ewyboy.cultivatedtech.common.blocks.BlockEcoflamer;
+import com.ewyboy.cultivatedtech.common.register.Register;
+import com.google.common.collect.Lists;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,65 +19,105 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.Random;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by EwyBoy
  */
 public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IEnergyProvider {
 
-    int capacity;
-    EnergyStorage storage = new EnergyStorage(capacity, 150);
-    private Random random = new Random();
+    EnergyStorage storage;
+    private IBlockState state;
+    private int generatedAmount, range, probability;
 
     public TileEntityEcoflamer() {}
 
-    public TileEntityEcoflamer(int capacity) {
-        this.capacity = capacity;
+    public TileEntityEcoflamer(int tier) {
+        switch (tier) {
+            case 1:
+                 storage = new EnergyStorage(6400, 640);
+                 generatedAmount = 1000;
+                 range = 3;
+                 probability = 100;
+                 state = Register.Blocks.ecoflamer1.getDefaultState();
+            break;
+
+            case 2:
+                storage = new EnergyStorage(64000, 6400);
+                generatedAmount = 10000;
+                range = 5;
+                probability = 50;
+                state = Register.Blocks.ecoflamer2.getDefaultState();
+            break;
+
+            case 3:
+                 storage = new EnergyStorage(640000, 64000);
+                 generatedAmount = 100000;
+                 range = 7;
+                 probability = 10;
+                 state = Register.Blocks.ecoflamer3.getDefaultState();
+            break;
+
+            default:
+                storage = new EnergyStorage(0, 0);
+                generatedAmount = 0;
+                range = 0;
+                probability = -1;
+                state = null;
+            break;
+        }
     }
 
-    private IBlockState state = BlockLoader.ecoflamer.getDefaultState();
-
-    @Override
-    public void update() {
-        for (EnumFacing facing : EnumFacing.VALUES) {
-            TileEntity tileEntity = worldObj.getTileEntity(pos.offset(facing));
+    private void extractEnergyToSurroundingReceivers() {
+        for(EnumFacing facing : EnumFacing.VALUES) {
+            TileEntity tileEntity = world.getTileEntity(pos.offset(facing));
             if (tileEntity instanceof IEnergyReceiver) {
                 int received = ((IEnergyReceiver) tileEntity).receiveEnergy(facing.getOpposite(), extractEnergy(facing, storage.getMaxExtract(), true), false);
                 extractEnergy(facing, received, false);
             }
         }
+    }
 
-        int probabilityPercentage = 5;
-        double prob = probabilityPercentage * 0.01;
+    private void generateEnergy() {
+         if (storage.getEnergyStored() < storage.getMaxEnergyStored()) {
+             storage.modifyEnergyStored(generatedAmount);
+         }
+    }
 
-        boolean grassBurned = false;
+    @Override
+    public void update() {
+        if (world.getBlockState(pos).getValue(BlockEcoflamer.ENABLED)) {
+            // call once per second = 5%
+            if (!world.isRemote && world.getTotalWorldTime() % probability == 0) {
+                List<BlockPos> list = Lists.newArrayList(BlockPos.getAllInBox(pos.add(range, 1, range), pos.add(-range, -1, -range)));
+                Collections.shuffle(list);
 
-        if(Math.random() < prob) {
-            BlockPos targetPos = new BlockPos(
-                    pos.getX() + Math.round(MathHelper.getRandomDoubleInRange(random, -3.0D, 3.0D)),
-                    pos.getY() - 1,
-                    pos.getZ() + Math.round(MathHelper.getRandomDoubleInRange(random, -3.0D, 3.0D))
-            );
-        if (!worldObj.isRemote) {
-                if (targetPos.equals(pos.down()) || worldObj.getBlockState(targetPos) instanceof BlockDirt) {
-                    update();
-                } else {
-                    if (worldObj.getBlockState(targetPos).getBlock() instanceof BlockGrass) {
-                        worldObj.playSound((double) targetPos.getX(), (double)targetPos.getY(), (double)targetPos.getZ(), SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0f, (float) MathHelper.getRandomDoubleInRange(random, -1.0d, 1.0d), false);
-                        worldObj.setBlockState(targetPos, Blocks.DIRT.getDefaultState(), 3);
-                        grassBurned = true;
+                //maximal tries, you could change it to list.size() for the entire list
+                final int maxTries = 3;
+                int tries = 0;
+
+                //iterate over all blocks
+                for (BlockPos targetPos : list) {
+                    if (tries >= maxTries)
+                        break;
+                    tries++;
+                    if (world.getBlockState(targetPos).getBlock() == Blocks.GRASS) {
+                        world.setBlockState(targetPos, Blocks.DIRT.getDefaultState(), 3);
+                        generateEnergy();
+                        world.notifyBlockUpdate(pos, state, state, 3);
+                        SoundHelper.broadcastServerSidedSoundToAllPlayerNearby(world, targetPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 9);
+                        break;
                     }
                 }
-            } if (grassBurned) {
-                storage.modifyEnergyStored(2000);
-                worldObj.notifyBlockUpdate(pos, state, state,3);
-                SoundHelper.broadcastServerSidedSoundToAllPlayerNearby(worldObj, targetPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 9);
             }
         }
+        extractEnergyToSurroundingReceivers();
     }
 
     @Nullable
@@ -91,6 +132,7 @@ public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IE
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         readFromNBT(pkt.getNbtCompound());
     }

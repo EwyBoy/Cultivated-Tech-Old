@@ -1,0 +1,11 @@
+{
+  "result": {
+    "item": "cultivatedtech:itemseedhemp"
+  },
+  "ingredients": [
+    {
+      "item": "cultivatedtech:itemhemp"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

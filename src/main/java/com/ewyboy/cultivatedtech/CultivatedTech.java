@@ -1,7 +1,5 @@
 package com.ewyboy.cultivatedtech;
 
-import com.ewyboy.cultivatedtech.common.compatibilities.CompatibilityHandler;
-import com.ewyboy.cultivatedtech.common.loaders.*;
 import com.ewyboy.cultivatedtech.proxy.CommonProxy;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -12,17 +10,16 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import static com.ewyboy.cultivatedtech.common.utility.Reference.Info.*;
-import static com.ewyboy.cultivatedtech.common.utility.Reference.Paths.CLIENT_PROXY;
-import static com.ewyboy.cultivatedtech.common.utility.Reference.Paths.COMMON_PROXY;
+import static com.ewyboy.cultivatedtech.common.utility.Reference.Paths.*;
 
-@Mod(modid = MODID, name = NAME, version = BUILD_VERSION, acceptedMinecraftVersions = MINECRAFT_VERSION)
+@Mod(modid = MOD_ID, name = NAME, version = VERSION, dependencies = "required-after:bibliotheca@[1.0.3-1.12.2,);")
 public class CultivatedTech {
 
     public CultivatedTech() {
         FluidRegistry.enableUniversalBucket();
     }
 
-    @Mod.Instance(MODID)
+    @Mod.Instance(MOD_ID)
     public static CultivatedTech INSTANCE;
 
     @SidedProxy(clientSide = CLIENT_PROXY, serverSide = COMMON_PROXY)
@@ -32,13 +29,6 @@ public class CultivatedTech {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        CompatibilityHandler.registerWaila();
-        ConfigLoader.registerConfig(event.getSuggestedConfigurationFile());
-        FluidLoader.init();
-        BlockLoader.init();
-        ItemLoader.init();
-        TileEntityLoader.init();
-        RecipeLoader.registerRecipes();
         proxy.preInit(event);
     }
 
