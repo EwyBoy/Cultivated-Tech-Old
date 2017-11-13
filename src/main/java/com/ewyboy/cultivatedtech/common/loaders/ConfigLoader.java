@@ -9,11 +9,13 @@ import java.io.File;
  **/
 public class ConfigLoader {
 
+    public static Configuration config;
+
     public static void registerConfig(File file) {
-        Configuration config = new Configuration(file);
+        config = new Configuration(file);
 
         config.load();
             //Config here
-        config.save();
+        if (config.hasChanged()) config.save();
     }
 }

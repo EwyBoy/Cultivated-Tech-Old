@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "cultivatedtech:blockecoflamer1"
+  },
+  "pattern": [
+    "zxz",
+    "xrx",
+    "zfz"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "f": {
+      "item": "minecraft:furnace"
+    },
+    "x": {
+      "item": "minecraft:brick_block"
+    },
+    "z": {
+      "item": "minecraft:brick"
+    }
+  }
+}

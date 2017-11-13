@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "cultivatedtech:blocksoil"
+  },
+  "pattern": [
+    "x",
+    "y"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "minecraft:dye",
+      "data": 15
+    },
+    "y": {
+      "item": "minecraft:dirt",
+      "data": 0
+    }
+  }
+}

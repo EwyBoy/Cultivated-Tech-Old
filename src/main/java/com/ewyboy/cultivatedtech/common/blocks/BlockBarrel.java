@@ -1,9 +1,10 @@
 package com.ewyboy.cultivatedtech.common.blocks;
 
-import com.ewyboy.cultivatedtech.common.blocks.blockbases.BlockBaseModeledFacing;
-import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaCamouflageUser;
-import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaInformationUser;
-import com.ewyboy.cultivatedtech.common.loaders.ItemLoader;
+import com.ewyboy.bibliotheca.common.block.BlockBaseModeledFacing;
+import com.ewyboy.bibliotheca.common.compatibilities.waila.IWailaCamouflageUser;
+import com.ewyboy.bibliotheca.common.compatibilities.waila.IWailaInformationUser;
+import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
+import com.ewyboy.cultivatedtech.common.register.Register;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.block.material.Material;
@@ -19,7 +20,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -33,32 +33,34 @@ public class BlockBarrel extends BlockBaseModeledFacing implements IWailaInforma
         super(Material.WOOD);
         setHardness(1.0f);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        setCreativeTab(CreativeTabLoader.tabCultivatedTech);
     }
 
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         List<ItemStack> list = super.getDrops(world, pos, state, fortune);
-        if(state.getValue(ENABLED)) list.add(new ItemStack(ItemLoader.barrelTap));
+        if(state.getValue(ENABLED)) list.add(new ItemStack(Register.Items.barrelTap));
 
         return list;
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        ItemStack item = new ItemStack(ItemLoader.barrelTap);
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ItemStack item = new ItemStack(Register.Items.barrelTap);
+        ItemStack heldItem = player.getHeldItem(hand);
 
-        if (heldItem != null && !world.getBlockState(pos).getValue(ENABLED) && world.getBlockState(pos).getValue(FACING) == side) {
+        if (!heldItem.isEmpty() && !world.getBlockState(pos).getValue(ENABLED) && world.getBlockState(pos).getValue(FACING).equals(facing)) {
             if (heldItem.getItem().equals(item.getItem())) {
-                if (!player.isCreative()) heldItem.stackSize--;
+                if (!player.isCreative()) heldItem.shrink(1);
                 world.setBlockState(pos, getDefaultState().withProperty(ENABLED, true).withProperty(FACING, world.getBlockState(pos).getValue(FACING)));
             }
         }
-        if (player.isSneaking() && world.getBlockState(pos).getValue(ENABLED) && world.getBlockState(pos).getValue(FACING) == side) {
+        if (player.isSneaking() && world.getBlockState(pos).getValue(ENABLED) && world.getBlockState(pos).getValue(FACING).equals(facing)) {
             world.setBlockState(pos, getDefaultState().withProperty(ENABLED, false).withProperty(FACING, world.getBlockState(pos).getValue(FACING)));
             if (!player.isCreative())  {
-            	if (!player.inventory.addItemStackToInventory(item)) {
+                if (!player.inventory.addItemStackToInventory(item)) {
                     EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1.25, pos.getZ() + 0.5, item);
-                    world.spawnEntityInWorld(entityItem);
+                    world.spawnEntity(entityItem);
                 }
             } else if (!player.isCreative()) player.openContainer.detectAndSendChanges();
         }

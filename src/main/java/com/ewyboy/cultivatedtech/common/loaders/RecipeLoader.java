@@ -1,30 +1,34 @@
 package com.ewyboy.cultivatedtech.common.loaders;
 
-import net.minecraft.init.Items;
+import com.ewyboy.cultivatedtech.common.utility.RecipeHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
-/**
- * Created by EwyBoy
- **/
+import static com.ewyboy.cultivatedtech.common.register.Register.Items.brick;
+import static com.ewyboy.cultivatedtech.common.register.Register.Items.witheredBrick;
+import static net.minecraft.init.Items.BRICK;
+import static net.minecraftforge.fml.common.registry.GameRegistry.addSmelting;
+
 public class RecipeLoader {
 
+    public static void init() {
+        //registerRecipes();
+        registerSmeltingRecipes();
+    }
+
     public static void registerRecipes() {
-        addSmelting(new ItemStack(Items.BRICK), new ItemStack(ItemLoader.brick, 1, 1), 0f);
-        addSmelting(new ItemStack(ItemLoader.brick, 1, 1), new ItemStack(ItemLoader.brick, 1, 2), 0f);
-        addSmelting(new ItemStack(ItemLoader.brick, 1, 2), new ItemStack(ItemLoader.brick, 1, 3), 0f);
-        addSmelting(new ItemStack(ItemLoader.brick, 1, 3), new ItemStack(ItemLoader.brick, 1, 4), 0f);
-        addSmelting(new ItemStack(ItemLoader.brick, 1, 4), new ItemStack(ItemLoader.brick, 1, 5), 0f);
-        addSmelting(new ItemStack(ItemLoader.brick, 1, 5), new ItemStack(ItemLoader.brick, 1, 6), 0f);
-        addSmelting(new ItemStack(ItemLoader.brick, 1, 6), new ItemStack(ItemLoader.witheredBrick, 1), 0f);
+        RecipeHelper.setupDir();
+        RecipeHelper.generateConstants();
     }
 
-    private static void addSmelting(ItemStack stackIn, ItemStack stackOut, float xp) {
-        GameRegistry.addSmelting(stackIn, stackOut, xp);
+    public static void registerSmeltingRecipes() {
+        addSmelting(new ItemStack(BRICK), new ItemStack(brick, 1,0), 0);
+        addSmelting(new ItemStack(brick, 1, 0), new ItemStack(brick, 1,1), 0);
+        addSmelting(new ItemStack(brick, 1, 1), new ItemStack(brick, 1,2), 0);
+        addSmelting(new ItemStack(brick, 1, 2), new ItemStack(brick, 1,3), 0);
+        addSmelting(new ItemStack(brick, 1, 3), new ItemStack(brick, 1,4), 0);
+        addSmelting(new ItemStack(brick, 1, 4), new ItemStack(brick, 1,5), 0);
+        addSmelting(new ItemStack(brick, 1, 5), new ItemStack(brick, 1,6), 0);
+        addSmelting(new ItemStack(brick, 1, 6), new ItemStack(witheredBrick), 0);
     }
 
-    private static void addRecipe(ItemStack stack, Object ... recipe) {
-        GameRegistry.addRecipe(new ShapedOreRecipe(stack, recipe));
-    }
 }

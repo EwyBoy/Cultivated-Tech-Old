@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "cultivatedtech:blockbarrel"
+  },
+  "pattern": [
+    "xx",
+    "x "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "minecraft:stick"
+    }
+  }
+}

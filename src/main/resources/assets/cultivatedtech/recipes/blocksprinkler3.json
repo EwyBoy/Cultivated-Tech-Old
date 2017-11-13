@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "cultivatedtech:blocksprinkler3"
+  },
+  "pattern": [
+    "xxx",
+    "brb",
+    "xxx"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "minecraft:iron_bars"
+    },
+    "r": {
+      "item": "minecraft:redstone_torch"
+    },
+    "x": {
+      "item": "cultivatedtech:itemenderizedbrick"
+    }
+  }
+}

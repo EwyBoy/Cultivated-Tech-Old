@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "cultivatedtech:blockecoflamer3"
+  },
+  "pattern": [
+    "zxz",
+    "x x",
+    "zfz"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "f": {
+      "item": "cultivatedtech:blockecoflamer2"
+    },
+    "x": {
+      "item": "cultivatedtech:blockenderizedbrick"
+    },
+    "z": {
+      "item": "cultivatedtech:itemenderizedbrick"
+    }
+  }
+}

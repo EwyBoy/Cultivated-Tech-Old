@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "cultivatedtech:blockbarrel"
+  },
+  "pattern": [
+    "xxx",
+    "xbx",
+    "xxx"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "minecraft:bucket"
+    },
+    "x": {
+      "item": "minecraft:log",
+      "data": 0
+    }
+  }
+}

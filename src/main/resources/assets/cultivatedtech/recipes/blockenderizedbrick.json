@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "cultivatedtech:blockenderizedbrick"
+  },
+  "pattern": [
+    "xx",
+    "xx"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "cultivatedtech:itemenderizedbrick"
+    }
+  }
+}

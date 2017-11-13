@@ -13,8 +13,8 @@ public class CTFluid extends Fluid {
     public CTFluid(String fluidName, int viscosity, int density, int luminosity) {
         super(
                 fluidName,
-                new ResourceLocation(Reference.Info.MODID + ":" + "blocks" + "/" + fluidName + "_still"),
-                new ResourceLocation(Reference.Info.MODID + ":" + "blocks" + "/" + fluidName + "_flow")
+                new ResourceLocation(Reference.Info.MOD_ID + ":" + "blocks" + "/" + fluidName + "_still"),
+                new ResourceLocation(Reference.Info.MOD_ID + ":" + "blocks" + "/" + fluidName + "_flow")
         );
         this.setViscosity(viscosity);
         this.setDensity(density);

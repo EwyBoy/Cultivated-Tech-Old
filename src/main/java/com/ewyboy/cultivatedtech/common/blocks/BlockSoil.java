@@ -1,11 +1,10 @@
 package com.ewyboy.cultivatedtech.common.blocks;
 
-import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaCamouflageUser;
-import com.ewyboy.cultivatedtech.common.compatibilities.waila.IWailaInformationUser;
+import com.ewyboy.bibliotheca.common.compatibilities.waila.IWailaCamouflageUser;
+import com.ewyboy.bibliotheca.common.compatibilities.waila.IWailaInformationUser;
+import com.ewyboy.bibliotheca.common.interfaces.IBlockRenderer;
 import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntitySoil;
-import com.ewyboy.cultivatedtech.common.utility.Logger;
-import com.ewyboy.cultivatedtech.common.utility.interfaces.IBlockRenderer;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.block.Block;
@@ -14,9 +13,8 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -40,7 +38,7 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
 
     public BlockSoil() {
         super();
-        setCreativeTab(CreativeTabLoader.tabUnknown);
+        setCreativeTab(CreativeTabLoader.tabCultivatedTech);
     }
 
     @Override
@@ -57,7 +55,7 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {}
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {}
 
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
@@ -105,9 +103,8 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
     @Override
     public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {}
 
-
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {}
+    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {}
 
     @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
@@ -122,17 +119,6 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerBlockRenderer() {
-        ModelLoader.setCustomStateMapper(this, new DefaultStateMapper() {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-                return new ModelResourceLocation(getRegistryName(), getPropertyString(state.getProperties()));
-            }
-        });
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
     public void registerBlockItemRenderer() {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), new ItemStack(this).getMetadata(), new ModelResourceLocation(getRegistryName(), "inventory"));
     }
@@ -140,6 +126,11 @@ public class BlockSoil extends BlockFarmland implements ITileEntityProvider, IBl
     @Override
     public int[] modelMetas() {
         return new int[0];
+    }
+
+    @Override
+    public void registerBlockRenderer() {
+        return;
     }
 
     private TileEntitySoil getTE(IBlockAccess world, BlockPos pos) {

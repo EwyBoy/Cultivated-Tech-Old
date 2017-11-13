@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "cultivatedtech:blockwitheredbrick"
+  },
+  "pattern": [
+    "xx",
+    "xx"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "cultivatedtech:itemwitheredbrick"
+    }
+  }
+}
