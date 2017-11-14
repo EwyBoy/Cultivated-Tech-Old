@@ -1,0 +1,34 @@
+###############################
+###     Cultivated Tech     ###
+###############################
+
+#  - Creative Tab  - #
+itemGroup.cultivatedtech=栽培科技
+
+# -  Blocks - #
+tile.cultivatedtech.blockbarrel.name=桶
+tile.cultivatedtech.blockcrophemp.name=工业大麻
+tile.cultivatedtech.blockhemp.name=麻草块
+tile.cultivatedtech.blocksoil.name=工业泥土
+tile.cultivatedtech.blockfireplace.name=壁炉
+tile.cultivatedtech.blockenderizedbrick.name=末影砖块
+tile.cultivatedtech.blockwitheredbrick.name=凋零砖块
+tile.cultivatedtech.blockecoflamer1.name=燃烧器
+tile.cultivatedtech.blockecoflamer2.name=燃烧器
+tile.cultivatedtech.blockecoflamer3.name=燃烧器
+tile.cultivatedtech.blocksprinkler1.name=洒水器
+tile.cultivatedtech.blocksprinkler2.name=洒水器
+tile.cultivatedtech.blocksprinkler3.name=洒水器
+
+#tile.cultivatedtech.block.name=
+
+#  - Items  - #
+item.cultivatedtech.itembarreltap.name=水龙头（桶）
+item.cultivatedtech.itemhemp.name=工业大麻
+item.cultivatedtech.itemseedhemp.name=工业大麻种子
+item.cultivatedtech.itembrick.name=红砖
+item.cultivatedtech.itembrick.name=红砖
+item.cultivatedtech.itemwitheredbrick.name=凋零砖
+item.cultivatedtech.itemenderizedbrick.name=末影砖
+
+#item.cultivatedtech.item.name=
