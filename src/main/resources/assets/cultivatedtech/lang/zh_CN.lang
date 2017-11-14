@@ -3,7 +3,7 @@
 ###############################
 
 #  - Creative Tab  - #
-itemGroup.cultivatedtech=栽培科技
+itemGroup.cultivatedtech=Cultivated Tech
 
 # -  Blocks - #
 tile.cultivatedtech.blockbarrel.name=桶
