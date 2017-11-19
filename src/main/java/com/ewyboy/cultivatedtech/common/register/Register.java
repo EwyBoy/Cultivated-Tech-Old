@@ -36,6 +36,11 @@ public class Register {
         public static final BlockSprinkler sprinkler1 = new BlockSprinkler(1);
         public static final BlockSprinkler sprinkler2 = new BlockSprinkler(2);
         public static final BlockSprinkler sprinkler3 = new BlockSprinkler(3);
+        public static final BlockNetherGrass nethergrass = new BlockNetherGrass();
+        public static final BlockMagmaLily magmalily = new BlockMagmaLily();
+        public static final BlockIndustrialSoil industrialsoil1 = new BlockIndustrialSoil(1);
+        public static final BlockIndustrialSoil industrialsoil2 = new BlockIndustrialSoil(2);
+        public static final BlockBase industrialdirt = new BlockIndustrialDirt();
     }
 
     public static class Items {
@@ -44,7 +49,7 @@ public class Register {
         public static ItemBaseMeta brick = new ItemBrick("brick", 6);
         public static ItemBase witheredBrick = new ItemBase("witheredbrick", tabCultivatedTech);
         public static ItemBase enderizedBrick = new ItemBase("enderizedbrick", tabCultivatedTech);
-        public static ItemBaseSeeds seedHemp = new ItemBaseSeeds("seedhemp", Blocks.crophemp, Register.Blocks.soil);
+        public static ItemBaseSeeds seedHemp = new ItemBaseSeeds("seedhemp", Blocks.crophemp, Blocks.industrialsoil1);
     }
 
     public static class Tiles {

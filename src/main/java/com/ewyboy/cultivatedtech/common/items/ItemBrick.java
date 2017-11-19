@@ -25,7 +25,11 @@ public class ItemBrick extends ItemBaseMeta {
     public ItemBrick(String name, int maxDmg) {
         super(name, maxDmg);
         this.maxDmg = maxDmg;
-        setCreativeTab(CreativeTabLoader.tabCultivatedTech);
+    }
+
+    @Override
+    public boolean showDurabilityBar(ItemStack stack) {
+        return false;
     }
 
     /**

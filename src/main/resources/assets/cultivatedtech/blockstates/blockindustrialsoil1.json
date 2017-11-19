@@ -13,6 +13,6 @@
     "moisture=4": { "model": "cultivatedtech:blocksoil_dry" },
     "moisture=5": { "model": "cultivatedtech:blocksoil_dry" },
     "moisture=6": { "model": "cultivatedtech:blocksoil_dry" },
-    "moisture=7": { "model": "cultivatedtech:blocksoil_dry" }
+    "moisture=7": { "model": "cultivatedtech:blocksoil_wet_water" }
   }
 }

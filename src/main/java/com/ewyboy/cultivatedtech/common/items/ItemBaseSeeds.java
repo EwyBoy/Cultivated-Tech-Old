@@ -23,8 +23,8 @@ public class ItemBaseSeeds extends ItemSeeds implements IItemRenderer {
         return null;
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerItemRenderer() {
         ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }

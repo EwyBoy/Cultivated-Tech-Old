@@ -1,6 +1,7 @@
 package com.ewyboy.cultivatedtech.common.blocks.crops;
 
 import com.ewyboy.bibliotheca.common.compatibilities.waila.IWailaCamouflageUser;
+import com.ewyboy.cultivatedtech.common.register.Register;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.block.Block;
@@ -101,7 +102,7 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
     }
 
     @Override
-    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+    public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient) {
         return state.getValue(AGE) < 7;
     }
 
@@ -191,6 +192,6 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
 
     @Override
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        return new ItemStack(getCrop());
+        return new ItemStack(Register.Items.hemp);
     }
 }

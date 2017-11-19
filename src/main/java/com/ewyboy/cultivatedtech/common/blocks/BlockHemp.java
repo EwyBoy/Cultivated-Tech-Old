@@ -22,19 +22,20 @@ public class BlockHemp extends BlockHay implements IBlockRenderer {
         setCreativeTab(CreativeTabLoader.tabCultivatedTech);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerBlockRenderer() {
         ModelLoader.setCustomStateMapper(this, new DefaultStateMapper() {
             @Override
+            @SideOnly(Side.CLIENT)
             protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
                 return new ModelResourceLocation(getRegistryName(), getPropertyString(state.getProperties()));
             }
         });
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerBlockItemRenderer() {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), new ItemStack(this).getMetadata(), new ModelResourceLocation(getRegistryName(), "inventory"));
     }

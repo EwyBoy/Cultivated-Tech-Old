@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import static com.ewyboy.cultivatedtech.common.utility.Reference.Info.*;
 import static com.ewyboy.cultivatedtech.common.utility.Reference.Paths.*;
 
-@Mod(modid = MOD_ID, name = NAME, version = VERSION, dependencies = "required-after:bibliotheca@[1.0.3-1.12.2,);")
+@Mod(modid = MOD_ID, name = NAME, version = VERSION, dependencies = DEPENDENCIES)
 public class CultivatedTech {
 
     public CultivatedTech() {

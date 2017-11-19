@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "variants": {
+      "normal": [
+      { "model": "cultivatedtech:blockmagmalily" },
+      { "model": "cultivatedtech:blockmagmalily", "y": 90 },
+      { "model": "cultivatedtech:blockmagmalily", "y": 180 },
+      { "model": "cultivatedtech:blockmagmalily", "y": 270 }
+      ],
+    "inventory": [{}]
+  }
+}

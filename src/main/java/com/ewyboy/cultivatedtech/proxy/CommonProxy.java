@@ -7,6 +7,7 @@ import com.ewyboy.bibliotheca.common.loaders.TileEntityLoader;
 import com.ewyboy.cultivatedtech.common.loaders.*;
 import com.ewyboy.cultivatedtech.common.register.Register;
 import com.ewyboy.cultivatedtech.common.utility.RecipeHelper;
+import com.ewyboy.cultivatedtech.common.world.TheWorldGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.FMLEventChannel;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 import static com.ewyboy.cultivatedtech.common.utility.Reference.Info.MOD_ID;
@@ -22,7 +24,7 @@ import static com.ewyboy.cultivatedtech.common.utility.Reference.Info.MOD_ID;
 /**
  * Created by EwyBoy
  **/
-public abstract class CommonProxy {
+public class CommonProxy {
 
     public static FMLEventChannel packetHandler;
 
@@ -40,7 +42,9 @@ public abstract class CommonProxy {
         SeedLoader.registerSeeds();
     }
 
-    public void init(FMLInitializationEvent event) {}
+    public void init(FMLInitializationEvent event) {
+        GameRegistry.registerWorldGenerator(new TheWorldGenerator(),10);
+    }
 
     public void postInit(FMLPostInitializationEvent event) {}
 
