@@ -8,7 +8,6 @@ import com.ewyboy.cultivatedtech.common.blocks.BlockEcoflamer;
 import com.ewyboy.cultivatedtech.common.register.Register;
 import com.google.common.collect.Lists;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,7 +18,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -30,9 +29,9 @@ import java.util.List;
 /**
  * Created by EwyBoy
  */
-public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IEnergyProvider {
+public class TileEntityEcoflamer extends TileEntity implements ITickable, IEnergyProvider {
 
-    EnergyStorage storage;
+    private EnergyStorage storage;
     private IBlockState state;
     private int generatedAmount, range, probability;
 
@@ -52,7 +51,7 @@ public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IE
                 storage = new EnergyStorage(64000, 6400);
                 generatedAmount = 10000;
                 range = 5;
-                probability = 50;
+                probability = 75;
                 state = Register.Blocks.ecoflamer2.getDefaultState();
             break;
 
@@ -60,7 +59,7 @@ public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IE
                  storage = new EnergyStorage(640000, 64000);
                  generatedAmount = 100000;
                  range = 7;
-                 probability = 10;
+                 probability = 50;
                  state = Register.Blocks.ecoflamer3.getDefaultState();
             break;
 
@@ -92,8 +91,7 @@ public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IE
 
     @Override
     public void update() {
-        if (world.getBlockState(pos).getValue(BlockEcoflamer.ENABLED)) {
-            // call once per second = 5%
+        if (!world.getBlockState(pos).getValue(BlockEcoflamer.ENABLED)) {
             if (!world.isRemote && world.getTotalWorldTime() % probability == 0) {
                 List<BlockPos> list = Lists.newArrayList(BlockPos.getAllInBox(pos.add(range, 1, range), pos.add(-range, -1, -range)));
                 Collections.shuffle(list);
@@ -112,6 +110,11 @@ public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IE
                         generateEnergy();
                         world.notifyBlockUpdate(pos, state, state, 3);
                         SoundHelper.broadcastServerSidedSoundToAllPlayerNearby(world, targetPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 9);
+                        break;
+                    } else if (world.getBlockState(targetPos).getBlock() instanceof IPlantable) {
+                        world.destroyBlock(targetPos, true);
+                        generateEnergy();
+                        world.notifyBlockUpdate(pos, state, state, 3);
                         break;
                     }
                 }
@@ -139,14 +142,15 @@ public class TileEntityEcoflamer extends TileEntityBase implements ITickable, IE
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        tag.setInteger("energy", storage.getEnergyStored());
-        return super.writeToNBT(tag);
+        super.writeToNBT(tag);
+        tag.setInteger("energy", this.storage.getEnergyStored());
+        return tag;
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tag) {
-        storage.setEnergyStored(tag.getInteger("energy"));
         super.readFromNBT(tag);
+        this.storage.setEnergyStored(tag.getInteger("energy"));
     }
 
     @Override

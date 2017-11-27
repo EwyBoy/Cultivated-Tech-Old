@@ -17,6 +17,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -76,7 +77,7 @@ public class BlockEcoflamer extends BlockBaseModeled implements ITileEntityProvi
         double x = (double)pos.getX() + 0.5D;
         double z = (double)pos.getZ() + 0.5D;
 
-        if (world.getBlockState(pos).getValue(ENABLED)) {
+        if (!world.getBlockState(pos).getValue(ENABLED)) {
             switch (tier) {
                 case 1:
                     for (int i = 0; i < 30; i++) {

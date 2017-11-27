@@ -8,7 +8,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -20,9 +19,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 
-public class ItemMagmaLily extends ItemBlock {
+public class ItemEnderLily extends ItemBlock {
 
-    public ItemMagmaLily(Block block) {
+    public ItemEnderLily(Block block) {
         super(block);
     }
 
@@ -43,14 +42,14 @@ public class ItemMagmaLily extends ItemBlock {
                 BlockPos blockpos1 = blockpos.up();
                 IBlockState iblockstate = world.getBlockState(blockpos);
 
-                if (iblockstate.getMaterial() == Material.LAVA && iblockstate.getValue(BlockLiquid.LEVEL) == 0 && world.isAirBlock(blockpos1)) {
+                if (iblockstate.getMaterial() == Material.AIR && iblockstate.getValue(BlockLiquid.LEVEL) == 0 && world.isAirBlock(blockpos1)) {
                     BlockSnapshot blocksnapshot = BlockSnapshot.getBlockSnapshot(world, blockpos1);
-                    world.setBlockState(blockpos1, Register.Blocks.magmalily.getDefaultState());
+                    world.setBlockState(blockpos1, Register.Blocks.enderlily.getDefaultState());
                     if (ForgeEventFactory.onPlayerBlockPlace(player, blocksnapshot, EnumFacing.UP, hand).isCanceled()) {
                         blocksnapshot.restore(true, false);
                         return new ActionResult<>(EnumActionResult.FAIL, itemstack);
                     }
-                    world.setBlockState(blockpos1, Register.Blocks.magmalily.getDefaultState(), 11);
+                    world.setBlockState(blockpos1, Register.Blocks.enderlily.getDefaultState(), 11);
                     if (player instanceof EntityPlayerMP) {
                         CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)player, blockpos1, itemstack);
                     }

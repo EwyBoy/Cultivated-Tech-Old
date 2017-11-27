@@ -25,5 +25,7 @@ public class CreativeTabLoader {
     public static void initVanillaStuffToTab() {
         Blocks.BRICK_BLOCK.setCreativeTab(tabCultivatedTech);
         Items.BRICK.setCreativeTab(tabCultivatedTech);
+        Blocks.PORTAL.setCreativeTab(tabCultivatedTech);
+        Blocks.END_PORTAL.setCreativeTab(tabCultivatedTech);
     }
 }

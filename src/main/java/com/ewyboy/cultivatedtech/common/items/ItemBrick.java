@@ -32,22 +32,6 @@ public class ItemBrick extends ItemBaseMeta {
         return false;
     }
 
-    /**
-     * DEBUG CODE TODO REMOVE BEFORE RELEASE
-     **/
-   /* @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        ItemStack stack = playerIn.getHeldItem(handIn);
-        if (!worldIn.isRemote) {
-            if (stack.getMetadata() < stack.getMaxDamage()) {
-                playerIn.setHeldItem(handIn, new ItemStack(playerIn.getHeldItem(handIn).getItem(), 1, playerIn.getHeldItem(handIn).getMetadata() + 1));
-            } else if (stack.getMetadata() == 6) {
-                playerIn.setHeldItem(handIn, new ItemStack(Register.Items.witheredBrick));
-            }
-        }
-        return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
-    }*/
-
     @Override
     @SideOnly(Side.CLIENT)
     public void registerItemRenderer() {

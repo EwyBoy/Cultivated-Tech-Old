@@ -5,24 +5,19 @@ import com.ewyboy.bibliotheca.common.item.ItemBase;
 import com.ewyboy.bibliotheca.common.item.ItemBaseMeta;
 import com.ewyboy.cultivatedtech.common.blocks.*;
 import com.ewyboy.cultivatedtech.common.blocks.crops.BlockCropHemp;
-import com.ewyboy.cultivatedtech.common.blocks.fluid.CTFluidBlock;
 import com.ewyboy.cultivatedtech.common.items.ItemBaseSeeds;
 import com.ewyboy.cultivatedtech.common.items.ItemBrick;
 import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
-import com.ewyboy.cultivatedtech.common.loaders.FluidLoader;
-import com.ewyboy.cultivatedtech.common.material.UnknownMaterials;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntityEcoflamer;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntitySoil;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntitySprinkler;
 import net.minecraft.block.material.Material;
-import net.minecraftforge.fluids.BlockFluidClassic;
 
 import static com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader.tabCultivatedTech;
 
 public class Register {
 
     public static class Blocks {
-        public static final BlockFluidClassic ethanol = new CTFluidBlock(FluidLoader.ETHANOL, UnknownMaterials.FUEL);
         public static final BlockHemp hemp = new BlockHemp();
         public static final BlockSoil soil = new BlockSoil();
         public static final BlockBarrel barrel = new BlockBarrel();
@@ -38,9 +33,11 @@ public class Register {
         public static final BlockSprinkler sprinkler3 = new BlockSprinkler(3);
         public static final BlockNetherGrass nethergrass = new BlockNetherGrass();
         public static final BlockMagmaLily magmalily = new BlockMagmaLily();
+        public static final BlockEnderLily enderlily = new BlockEnderLily();
         public static final BlockIndustrialSoil industrialsoil1 = new BlockIndustrialSoil(1);
         public static final BlockIndustrialSoil industrialsoil2 = new BlockIndustrialSoil(2);
         public static final BlockBase industrialdirt = new BlockIndustrialDirt();
+        public static final BlockSwapper swapper = new BlockSwapper();
     }
 
     public static class Items {

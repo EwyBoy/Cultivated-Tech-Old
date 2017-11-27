@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "cultivatedtech:blockswapper",
+    "count": 2
+  },
+  "pattern": [
+    " x ",
+    "xox",
+    " x "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "minecraft:iron_ingot"
+    },
+    "o": {
+      "item": "cultivatedtech:itemenderizedbrick"
+    }
+  }
+}

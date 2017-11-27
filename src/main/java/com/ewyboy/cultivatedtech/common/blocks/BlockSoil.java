@@ -36,6 +36,7 @@ public class BlockSoil extends BlockFarmland implements IBlockRenderer {
 
     public BlockSoil() {
         super();
+        setHardness(1.0f);
     }
 
     @Override
@@ -68,7 +69,6 @@ public class BlockSoil extends BlockFarmland implements IBlockRenderer {
         if (!worldIn.isRemote && entityIn.canTrample(worldIn, this, pos, fallDistance)) {
             turnToIndustrialDirt(worldIn, pos);
         }
-        super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
     }
 
     @Override

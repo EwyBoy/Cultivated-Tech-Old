@@ -24,6 +24,7 @@ public class BlockIndustrialSoil extends BlockSoil implements IWailaInformationU
 
     public BlockIndustrialSoil(int tier) {
         this.tier = tier;
+        setHardness(1.0f);
     }
 
     @Override

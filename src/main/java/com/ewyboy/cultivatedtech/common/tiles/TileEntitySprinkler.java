@@ -9,6 +9,7 @@ import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
@@ -16,13 +17,14 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 import java.util.Random;
 
-public class TileEntitySprinkler extends TileEntityBase implements ITickable {
+public class TileEntitySprinkler extends TileEntity implements ITickable {
 
     private int tier;
     private int range;
@@ -135,8 +137,8 @@ public class TileEntitySprinkler extends TileEntityBase implements ITickable {
                 ); break;
                 default: vec = new Vec3d(0.0f,0.0f,0.0f); break;
             }
-
-            CultivatedTech.proxy.spawnLiquidSpray(world, new FluidStack(FluidRegistry.WATER, 0),
+            Fluid fluidToSpray = world.provider.getDimension() == -1 ? FluidRegistry.LAVA : FluidRegistry.WATER;
+            CultivatedTech.proxy.spawnLiquidSpray(world, new FluidStack(fluidToSpray, 0),
                     pos.getX() + 0.5 + (outletPosition * 0.6 * offsetX),
                     pos.getY() + 0.2,
                     pos.getZ() + 0.5 + (outletPosition * 0.6 * offsetZ),

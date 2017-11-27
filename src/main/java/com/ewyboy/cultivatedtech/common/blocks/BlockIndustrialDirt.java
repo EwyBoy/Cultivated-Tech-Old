@@ -20,6 +20,7 @@ public class BlockIndustrialDirt extends BlockBase {
     public BlockIndustrialDirt() {
         super(Material.GOURD);
         setCreativeTab(CreativeTabLoader.tabCultivatedTech);
+        setHardness(1.0f);
     }
 
     @Override
@@ -33,7 +34,6 @@ public class BlockIndustrialDirt extends BlockBase {
                 heldItem.damageItem(1, playerIn);
             }
         }
-
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
     }
 }

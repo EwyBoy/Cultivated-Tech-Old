@@ -1,0 +1,29 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "forge:multi-layer",
+    "custom": {
+      "base": "cultivatedtech:blockswapper#base",
+      "Solid": "cultivatedtech:blockswapper#base",
+      "Translucent": "cultivatedtech:blockswapper#core"
+    },
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "facing": {
+      "north": { },
+      "south": {"y": 180},
+      "west": {"y": 270},
+      "east": {"y": 90}
+    },
+    "base": [{
+      "custom": {"flip-v": true},
+      "model": "cultivatedtech:blockswappersolid"
+    }],
+    "core": [{
+      "model": "cultivatedtech:blockswappertranslucent"
+    }]
+  }
+}

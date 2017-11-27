@@ -1,6 +1,7 @@
 package com.ewyboy.cultivatedtech.common.world;
 
 import com.ewyboy.cultivatedtech.common.register.Register;
+import com.ewyboy.cultivatedtech.common.world.end.EnderlilyGenerator;
 import com.ewyboy.cultivatedtech.common.world.nether.MagmalilyGenerator;
 import com.ewyboy.cultivatedtech.common.world.nether.NetherGrassGenerator;
 import net.minecraft.block.Block;
@@ -42,7 +43,10 @@ public class TheWorldGenerator implements IWorldGenerator {
         generateThisShit(magmalilyGen, world, random, blockX, blockZ, 0, 4, 12);
     }
 
-    private void generateEnd(World world, Random random, int blockX, int blockZ) { }
+    private void generateEnd(World world, Random random, int blockX, int blockZ) {
+        WorldGenerator enderlilyGen = new EnderlilyGenerator();
+        generateThisShit(enderlilyGen, world, random, blockX, blockZ, 60, 2, 6);
+    }
 
     private void generateThisShit(WorldGenerator worldGenerator, World world, Random random, int blockX, int blockZ, int minimumSpawnHeight, int randomMin, int randomMax) {
         int numberOfStuff = randomMin + random.nextInt(randomMax - randomMin);

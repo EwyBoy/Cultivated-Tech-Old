@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "cultivatedtech:blockindustrialdirt",
+    "count": 8
+  },
+  "pattern": [
+    "xxx",
+    "xox",
+    "xxx"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "minecraft:dirt",
+      "data": 1
+    },
+    "o": {
+      "item": "minecraft:dye",
+      "data": 15
+    }
+  }
+}

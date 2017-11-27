@@ -71,23 +71,17 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
         return false;
     }
 
-    protected Item getSeed() {
-        return seedHemp;
-    }
-
-    protected Item getCrop() {
-        return Item.getItemFromBlock(this);
-    }
-
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        breakBlock(world, pos, state);
-
-        int minY = pos.getY() - 4;
-        for(; pos.getY() >= minY && !(world.getBlockState(pos).getBlock() instanceof BlockFarmland); pos = pos.down());
-        if (world.getBlockState(pos).getBlock() instanceof BlockFarmland) world.setBlockState(pos.up(), getStateFromMeta(0));
-
-        return true;
+        if (state.getValue(AGE) == 7) {
+            breakBlock(world, pos, state);
+            int minY = pos.getY() - 4;
+            for(; pos.getY() >= minY && !(world.getBlockState(pos).getBlock() instanceof BlockFarmland); pos = pos.down());
+            if (world.getBlockState(pos).getBlock() instanceof BlockFarmland) world.setBlockState(pos.up(), getStateFromMeta(0));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -98,7 +92,12 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         int stateValue = state.getValue(AGE);
-        return stateValue == 7 ? this.getCrop() : this.getSeed();
+
+        if (stateValue == 7) {
+            return Register.Items.hemp;
+        } else {
+            return Register.Items.seedHemp;
+        }
     }
 
     @Override
@@ -160,15 +159,13 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
         ItemStack out = null;
         int currentState = state.getValue(AGE);
 
-        if( currentState == 7) {
+        if(currentState == 7) {
             float chance = world.rand.nextFloat();
             if (chance >= 0.40){
                 out = new ItemStack(hemp,2);
             } else if (chance >=0.1){
                 out = new ItemStack(hemp);
             }
-        } else {
-            out = new ItemStack(seedHemp);
         }
 
         if (out != null) spawnAsEntity(world, pos, out);

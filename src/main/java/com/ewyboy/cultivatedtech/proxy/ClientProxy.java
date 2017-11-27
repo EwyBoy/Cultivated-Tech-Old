@@ -2,11 +2,8 @@ package com.ewyboy.cultivatedtech.proxy;
 
 import com.ewyboy.bibliotheca.common.helpers.ParticleHelper;
 import com.ewyboy.cultivatedtech.client.ParticleEffectSpray;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -25,6 +22,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
     }
