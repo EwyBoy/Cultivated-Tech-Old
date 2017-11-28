@@ -2,6 +2,7 @@ package com.ewyboy.cultivatedtech.common.blocks;
 
 import com.ewyboy.bibliotheca.common.interfaces.IBlockRenderer;
 import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
+import com.ewyboy.cultivatedtech.common.register.Register;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -60,6 +61,9 @@ public class BlockNetherGrass extends BlockBush implements IBlockRenderer {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        if (rand.nextInt(4) == 0) {
+            return Register.Items.scorch;
+        }
         return null;
     }
 

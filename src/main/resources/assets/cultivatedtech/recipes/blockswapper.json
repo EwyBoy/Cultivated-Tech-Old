@@ -4,9 +4,9 @@
     "count": 2
   },
   "pattern": [
-    " x ",
-    "xox",
-    " x "
+    "xix",
+    "ioi",
+    "xix"
   ],
   "type": "minecraft:crafting_shaped",
   "key": {
@@ -15,6 +15,9 @@
     },
     "o": {
       "item": "cultivatedtech:itemenderizedbrick"
+    },
+    "i": {
+      "item": "minecraft:glass"
     }
   }
 }

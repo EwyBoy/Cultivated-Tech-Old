@@ -1,15 +1,25 @@
 package com.ewyboy.cultivatedtech.common.blocks;
 
 import com.ewyboy.bibliotheca.common.compatibilities.waila.IWailaInformationUser;
+import com.ewyboy.bibliotheca.common.helpers.SoundHelper;
 import com.ewyboy.cultivatedtech.common.register.Register;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -53,6 +63,27 @@ public class BlockIndustrialSoil extends BlockSoil implements IWailaInformationU
                 case 2: world.setBlockState(pos, Register.Blocks.industrialsoil2.getDefaultState().withProperty(MOISTURE, 7), 2); break;
             }
         }
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (playerIn.getHeldItem(hand).getItem() == Items.NETHER_WART && tier == 2) {
+            worldIn.setBlockState(pos.up(), Blocks.NETHER_WART.getDefaultState());
+            SoundHelper.broadcastServerSidedSoundToAllPlayerNearby(worldIn, pos.up(), SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.PLAYERS, 5);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+        if (tier == 2) {
+            if (!entityIn.isImmuneToFire() && entityIn instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entityIn)) {
+                entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
+            }
+        }
+        super.onEntityWalk(worldIn, pos, entityIn);
     }
 
     @Override

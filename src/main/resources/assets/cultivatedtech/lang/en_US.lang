@@ -8,6 +8,7 @@ itemGroup.cultivatedtech=Cultivated Tech
 # -  Blocks - #
 tile.cultivatedtech.blockbarrel.name=Barrel
 tile.cultivatedtech.blockcrophemp.name=Industrial Hemp
+tile.cultivatedtech.blockcropscorch.name=Scorch
 tile.cultivatedtech.blockhemp.name=Hemp Bale
 tile.cultivatedtech.blocksoil.name=Industrial Soil
 tile.cultivatedtech.blockfireplace.name=Fireplace
@@ -37,5 +38,6 @@ item.cultivatedtech.itembrick.name=Brick
 item.cultivatedtech.itembrick.name=Brick
 item.cultivatedtech.itemwitheredbrick.name=Withered Brick
 item.cultivatedtech.itemenderizedbrick.name=Enderized Brick
+item.cultivatedtech.itemscorch.name=Scorch
 
 #item.cultivatedtech.item.name=

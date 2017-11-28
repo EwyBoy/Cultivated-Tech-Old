@@ -15,7 +15,6 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -63,12 +62,12 @@ public class TileEntitySprinkler extends TileEntity implements ITickable {
             if (world.isRemote) {
                 sprayParticles();
             } else {
-                sprinkleWater();
+                sprinkle();
             }
         }
     }
 
-    private void sprinkleWater() {
+    private void sprinkle() {
         List<BlockPos> area  = Lists.newArrayList(BlockPos.getAllInBox(pos.add(-range, -1, -range), pos.add(range, 1, range)));
         for (BlockPos scan : area) {
             IBlockState state = world.getBlockState(scan);

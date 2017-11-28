@@ -46,18 +46,16 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         int currentState = state.getValue(AGE);
-
         if (world.getBlockState(pos.down()).getBlock() == this || canBlockStay(world, pos, state)) {
-            if (world.getLightFromNeighbors(pos.up()) >= 7) {
-
-                //if (rand.nextInt(2) == 1) { TO add a random chance
-
-                if (world.isAirBlock(pos.up()) && currentState == 7 && canGrowUp(world, pos)) {
-                    world.setBlockState(pos.up(), getStateFromMeta(0));
+            if (rand.nextInt(8) == 0) {
+                if (world.getLightFromNeighbors(pos.up()) >= 7) {
+                    if (world.isAirBlock(pos.up()) && currentState == 7 && canGrowUp(world, pos)) {
+                        world.setBlockState(pos.up(), getStateFromMeta(0));
+                    }
                 }
-            }
-            if (currentState < 7) {
-                world.setBlockState(pos, this.getStateFromMeta(currentState + 1));
+                if (currentState < 7) {
+                    world.setBlockState(pos, this.getStateFromMeta(currentState + 1));
+                }
             }
         }
     }
@@ -91,9 +89,7 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        int stateValue = state.getValue(AGE);
-
-        if (stateValue == 7) {
+        if (state.getValue(AGE) == 7) {
             return Register.Items.hemp;
         } else {
             return Register.Items.seedHemp;
@@ -155,15 +151,15 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
         }
     }
 
-    private void dropHemp(World world, BlockPos pos, IBlockState state){
+    private void dropHemp(World world, BlockPos pos, IBlockState state) {
         ItemStack out = null;
         int currentState = state.getValue(AGE);
 
         if(currentState == 7) {
             float chance = world.rand.nextFloat();
-            if (chance >= 0.40){
+            if (chance >= 0.40) {
                 out = new ItemStack(hemp,2);
-            } else if (chance >=0.1){
+            } else if (chance >=0.1) {
                 out = new ItemStack(hemp);
             }
         }

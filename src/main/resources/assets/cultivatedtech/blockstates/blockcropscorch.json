@@ -1,0 +1,25 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cultivatedtech:cropcross"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/scorch_stage_1"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/scorch_stage_2"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "cultivatedtech:blocks/scorch_stage_3"
+        }
+      }
+    }
+  }
+}

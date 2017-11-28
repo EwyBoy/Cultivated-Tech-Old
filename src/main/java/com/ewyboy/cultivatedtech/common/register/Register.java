@@ -5,8 +5,10 @@ import com.ewyboy.bibliotheca.common.item.ItemBase;
 import com.ewyboy.bibliotheca.common.item.ItemBaseMeta;
 import com.ewyboy.cultivatedtech.common.blocks.*;
 import com.ewyboy.cultivatedtech.common.blocks.crops.BlockCropHemp;
+import com.ewyboy.cultivatedtech.common.blocks.crops.BlockCropScorch;
 import com.ewyboy.cultivatedtech.common.items.ItemBaseSeeds;
 import com.ewyboy.cultivatedtech.common.items.ItemBrick;
+import com.ewyboy.cultivatedtech.common.items.ItemScorch;
 import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntityEcoflamer;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntitySoil;
@@ -28,6 +30,7 @@ public class Register {
         public static final BlockBase witheredbrick = new BlockBase(Material.ROCK, CreativeTabLoader.tabCultivatedTech);
         public static final BlockBase enderizedbrick = new BlockBase(Material.ROCK, CreativeTabLoader.tabCultivatedTech);
         public static final BlockCropHemp crophemp = new BlockCropHemp();
+        public static final BlockCropScorch cropscorch = new BlockCropScorch();
         public static final BlockSprinkler sprinkler1 = new BlockSprinkler(1);
         public static final BlockSprinkler sprinkler2 = new BlockSprinkler(2);
         public static final BlockSprinkler sprinkler3 = new BlockSprinkler(3);
@@ -42,6 +45,7 @@ public class Register {
 
     public static class Items {
         public static ItemBase hemp = new ItemBase("hemp", tabCultivatedTech);
+        public static ItemScorch scorch = new ItemScorch();
         public static ItemBase barrelTap = new ItemBase("barreltap", tabCultivatedTech);
         public static ItemBaseMeta brick = new ItemBrick("brick", 6);
         public static ItemBase witheredBrick = new ItemBase("witheredbrick", tabCultivatedTech);
