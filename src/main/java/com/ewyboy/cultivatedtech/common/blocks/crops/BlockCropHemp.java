@@ -26,7 +26,6 @@ import net.minecraftforge.common.IPlantable;
 import java.util.Random;
 
 import static com.ewyboy.cultivatedtech.common.register.Register.Items.hemp;
-import static com.ewyboy.cultivatedtech.common.register.Register.Items.seedHemp;
 
 /**
  * Created by EwyBoy

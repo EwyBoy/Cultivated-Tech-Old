@@ -1,19 +1,19 @@
 package com.ewyboy.cultivatedtech.common.loaders;
 
-import com.ewyboy.cultivatedtech.common.blocks.fluid.CTFluid;
+import com.ewyboy.cultivatedtech.common.fluids.BaseFluid;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
 /**
  * Created by EwyBoy
- **/
+ */
 public class FluidLoader {
 
-    public static Fluid ETHANOL;
+    public static Fluid LIQUID_ENDER;
 
     public static void init() {
-        ETHANOL = new CTFluid("ethanol", 0, 200, 15);
-        ETHANOL = FluidRegistry.getFluid("ethanol");
-        if(!FluidRegistry.getBucketFluids().contains(ETHANOL)) FluidRegistry.addBucketForFluid(ETHANOL);
+        LIQUID_ENDER = new BaseFluid("liquid_ender", 0, 200, 15);
+        LIQUID_ENDER = FluidRegistry.getFluid("liquid_ender");
+        if (!FluidRegistry.getBucketFluids().contains(LIQUID_ENDER)) FluidRegistry.addBucketForFluid(LIQUID_ENDER);
     }
 }

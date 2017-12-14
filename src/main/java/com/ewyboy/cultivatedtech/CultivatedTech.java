@@ -19,6 +19,8 @@ public class CultivatedTech {
         FluidRegistry.enableUniversalBucket();
     }
 
+    static { FluidRegistry.enableUniversalBucket(); }
+
     @Mod.Instance(MOD_ID)
     public static CultivatedTech INSTANCE;
 
