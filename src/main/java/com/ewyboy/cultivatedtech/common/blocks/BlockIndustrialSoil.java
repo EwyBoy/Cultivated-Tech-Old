@@ -2,6 +2,7 @@ package com.ewyboy.cultivatedtech.common.blocks;
 
 import com.ewyboy.bibliotheca.common.compatibilities.waila.IWailaInformationUser;
 import com.ewyboy.bibliotheca.common.helpers.SoundHelper;
+import com.ewyboy.cultivatedtech.common.material.MaterialLoader;
 import com.ewyboy.cultivatedtech.common.register.Register;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -45,7 +46,9 @@ public class BlockIndustrialSoil extends BlockSoil implements IWailaInformationU
         switch (tier) {
             case 1: moisturizer = Material.WATER; break;
             case 2: moisturizer = Material.LAVA; break;
-            default: moisturizer = null;
+            case 3: moisturizer = MaterialLoader.ENDER; break;
+
+            default: moisturizer = MaterialLoader.ENDER;
         }
 
         if (!this.hasMoisture(world, pos, moisturizer)) {
@@ -53,6 +56,7 @@ public class BlockIndustrialSoil extends BlockSoil implements IWailaInformationU
                 switch (tier) {
                     case 1: world.setBlockState(pos, Register.Blocks.industrialsoil1.getDefaultState().withProperty(MOISTURE, i - 1), 2); break;
                     case 2: world.setBlockState(pos, Register.Blocks.industrialsoil2.getDefaultState().withProperty(MOISTURE, i - 1), 2); break;
+                    case 3: world.setBlockState(pos, Register.Blocks.industrialsoil3.getDefaultState().withProperty(MOISTURE, i - 1), 2); break;
                 }
             } else if (!this.hasCrops(world, pos)) {
                 turnToSoil(world, pos, Register.Blocks.soil);
@@ -61,6 +65,7 @@ public class BlockIndustrialSoil extends BlockSoil implements IWailaInformationU
             switch (tier) {
                 case 1: world.setBlockState(pos, Register.Blocks.industrialsoil1.getDefaultState().withProperty(MOISTURE, 7), 2); break;
                 case 2: world.setBlockState(pos, Register.Blocks.industrialsoil2.getDefaultState().withProperty(MOISTURE, 7), 2); break;
+                case 3: world.setBlockState(pos, Register.Blocks.industrialsoil3.getDefaultState().withProperty(MOISTURE, 7), 2); break;
             }
         }
     }
@@ -78,9 +83,18 @@ public class BlockIndustrialSoil extends BlockSoil implements IWailaInformationU
 
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+        Random random = new Random();
         if (tier == 2) {
             if (!entityIn.isImmuneToFire() && entityIn instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entityIn)) {
                 entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
+            }
+        }
+        if (tier == 3) {
+            if (entityIn instanceof EntityLivingBase) {
+                int x = random.nextInt(16) - 8;
+                int y = random.nextInt(4) - 2;
+                int z = random.nextInt(16) - 8;
+                ((EntityLivingBase) entityIn).attemptTeleport(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
             }
         }
         super.onEntityWalk(worldIn, pos, entityIn);
@@ -144,6 +158,7 @@ public class BlockIndustrialSoil extends BlockSoil implements IWailaInformationU
                 switch (tier) {
                     case 1: moisturizer = "§3Water§f"; break;
                     case 2: moisturizer = "§4Lava§f"; break;
+                    case 3: moisturizer = "§2Ender§f"; break;
                 }
                 list.add("Moisturizer: " + moisturizer);
             }

@@ -21,17 +21,14 @@ public class TheWorldGenerator implements IWorldGenerator {
         int blockZ = chunkZ * 16;
 
         switch(world.provider.getDimension()) {
-            case -1: generateNether(world, random, blockX, blockZ);
-                break;
-            case 0: generateWorld(world, random, blockX, blockZ);
-                break;
-            case 1: generateEnd(world, random, blockX, blockZ);
-                break;
+            case -1: generateNether(world, random, blockX, blockZ); break;
+            case 0: generateWorld(world, random, blockX, blockZ); break;
+            case 1: generateEnd(world, random, blockX, blockZ); break;
         }
     }
 
     private void generateWorld(World world, Random random, int blockX, int blockZ) {
-        WorldGenUtilities.generateUnderGround(Register.Blocks.industrialdirt, world, random, blockX, blockZ, 6, 28, 3,  7, 8, 24);
+        WorldGenUtilities.generateUnderGround(Register.Blocks.industrialdirt, world, random, blockX, blockZ, 6, 28, 0,  3, 4, 12);
     }
 
     private void generateNether(World world, Random random, int blockX, int blockZ) {

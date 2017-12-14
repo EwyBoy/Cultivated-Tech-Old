@@ -1,11 +1,15 @@
 {
   "forge_marker": 1,
+  "defaults": {
+    "model": "forge:fluid"
+  },
   "variants": {
-    "ethanol": {
-      "model": "forge:fluid",
-      "custom": {
-        "fluid": "ethanol"
+    "liquid_ender": [
+      {
+        "custom": {
+          "fluid": "liquid_ender"
+        }
       }
-    }
+    ]
   }
 }

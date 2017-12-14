@@ -1,0 +1,18 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cultivatedtech:blocksoil_dry"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "moisture=0": { "model": "cultivatedtech:blocksoil_dry" },
+    "moisture=1": { "model": "cultivatedtech:blocksoil_dry" },
+    "moisture=2": { "model": "cultivatedtech:blocksoil_dry" },
+    "moisture=3": { "model": "cultivatedtech:blocksoil_dry" },
+    "moisture=4": { "model": "cultivatedtech:blocksoil_dry" },
+    "moisture=5": { "model": "cultivatedtech:blocksoil_dry" },
+    "moisture=6": { "model": "cultivatedtech:blocksoil_dry" },
+    "moisture=7": { "model": "cultivatedtech:blocksoil_wet_ender" }
+  }
+}

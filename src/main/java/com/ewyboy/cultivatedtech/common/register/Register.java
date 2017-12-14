@@ -9,6 +9,7 @@ import com.ewyboy.cultivatedtech.common.blocks.crops.BlockCropScorch;
 import com.ewyboy.cultivatedtech.common.items.ItemBaseSeeds;
 import com.ewyboy.cultivatedtech.common.items.ItemBrick;
 import com.ewyboy.cultivatedtech.common.items.ItemScorch;
+import com.ewyboy.cultivatedtech.common.items.ItemVape;
 import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntityEcoflamer;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntitySoil;
@@ -39,8 +40,10 @@ public class Register {
         public static final BlockEnderLily enderlily = new BlockEnderLily();
         public static final BlockIndustrialSoil industrialsoil1 = new BlockIndustrialSoil(1);
         public static final BlockIndustrialSoil industrialsoil2 = new BlockIndustrialSoil(2);
+        public static final BlockIndustrialSoil industrialsoil3 = new BlockIndustrialSoil(3);
         public static final BlockBase industrialdirt = new BlockIndustrialDirt();
         public static final BlockSwapper swapper = new BlockSwapper();
+        //public static final BlockFluidClassic liquid_ender = new BaseFluidBlock(FluidLoader.LIQUID_ENDER, MaterialLoader.ENDER);
     }
 
     public static class Items {
@@ -51,6 +54,7 @@ public class Register {
         public static ItemBase witheredBrick = new ItemBase("witheredbrick", tabCultivatedTech);
         public static ItemBase enderizedBrick = new ItemBase("enderizedbrick", tabCultivatedTech);
         public static ItemBaseSeeds seedHemp = new ItemBaseSeeds("seedhemp", Blocks.crophemp, Blocks.industrialsoil1);
+        public static ItemVape vape = new ItemVape();
     }
 
     public static class Tiles {
