@@ -13,11 +13,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -25,9 +23,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.text.NumberFormat;
+import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
 import static net.minecraft.util.EnumParticleTypes.*;
@@ -44,11 +41,18 @@ public class BlockEcoflamer extends BlockBaseModeled implements ITileEntityProvi
         super(Material.ROCK);
         setCreativeTab(CreativeTabLoader.tabCultivatedTech);
         this.tier = tier;
+        setHardness(2.0f);
     }
 
     @Override
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
         return new ItemStack(this);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
+        tooltip.add("Burns grass and plants from surroundings");
+        tooltip.add("Produces RF as a byproduct");
     }
 
     @Override

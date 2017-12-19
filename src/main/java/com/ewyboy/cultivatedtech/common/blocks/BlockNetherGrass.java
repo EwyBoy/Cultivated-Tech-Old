@@ -7,7 +7,6 @@ import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -32,6 +31,7 @@ public class BlockNetherGrass extends BlockBush implements IBlockRenderer {
     public BlockNetherGrass() {
         super(Material.VINE);
         setCreativeTab(CreativeTabLoader.tabCultivatedTech);
+        setHardness(0.25f);
     }
 
     @Override

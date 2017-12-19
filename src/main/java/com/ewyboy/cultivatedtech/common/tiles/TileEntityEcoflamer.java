@@ -76,9 +76,11 @@ public class TileEntityEcoflamer extends TileEntity implements ITickable, IEnerg
     private void extractEnergyToSurroundingReceivers() {
         for(EnumFacing facing : EnumFacing.VALUES) {
             TileEntity tileEntity = world.getTileEntity(pos.offset(facing));
-            if (tileEntity instanceof IEnergyReceiver) {
-                int received = ((IEnergyReceiver) tileEntity).receiveEnergy(facing.getOpposite(), extractEnergy(facing, storage.getMaxExtract(), true), false);
-                extractEnergy(facing, received, false);
+            if (tileEntity instanceof IEnergyReceiver && ((IEnergyReceiver) tileEntity).canConnectEnergy(facing)) {
+                try {
+                    int received = ((IEnergyReceiver) tileEntity).receiveEnergy(facing.getOpposite(), extractEnergy(facing, storage.getMaxExtract(), true), false);
+                    extractEnergy(facing, received, false);
+                } catch (NullPointerException ignored) {}
             }
         }
     }

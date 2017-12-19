@@ -1,22 +1,18 @@
 package com.ewyboy.cultivatedtech.common.blocks;
 
 import com.ewyboy.bibliotheca.common.interfaces.IBlockRenderer;
-import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
 import com.ewyboy.cultivatedtech.common.register.Register;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntitySoil;
-import com.ewyboy.cultivatedtech.common.utility.Logger;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -27,6 +23,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -39,9 +36,10 @@ public class BlockSoil extends BlockFarmland implements IBlockRenderer {
         setHardness(1.0f);
     }
 
+
     @Override
-    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn) {
-        super.onBlockClicked(worldIn, pos, playerIn);
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
+        tooltip.add("Adaptive soil - Can be moisturised by both §9Water§f and §cLava§f");
     }
 
     @Override

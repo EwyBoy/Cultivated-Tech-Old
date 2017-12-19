@@ -5,6 +5,7 @@ import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
 import com.ewyboy.cultivatedtech.common.register.Register;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemHoe;
@@ -15,12 +16,20 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 public class BlockIndustrialDirt extends BlockBase {
 
     public BlockIndustrialDirt() {
         super(Material.GOURD);
         setCreativeTab(CreativeTabLoader.tabCultivatedTech);
         setHardness(1.0f);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
+        tooltip.add("Highly nutritious dirt - Excellent for farming");
     }
 
     @Override

@@ -9,11 +9,11 @@ import com.ewyboy.cultivatedtech.common.blocks.crops.BlockCropScorch;
 import com.ewyboy.cultivatedtech.common.items.ItemBaseSeeds;
 import com.ewyboy.cultivatedtech.common.items.ItemBrick;
 import com.ewyboy.cultivatedtech.common.items.ItemScorch;
-import com.ewyboy.cultivatedtech.common.items.ItemVape;
 import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntityEcoflamer;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntitySoil;
 import com.ewyboy.cultivatedtech.common.tiles.TileEntitySprinkler;
+import com.ewyboy.cultivatedtech.common.tiles.TileEntityFireplace;
 import net.minecraft.block.material.Material;
 
 import static com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader.tabCultivatedTech;
@@ -54,12 +54,14 @@ public class Register {
         public static ItemBase witheredBrick = new ItemBase("witheredbrick", tabCultivatedTech);
         public static ItemBase enderizedBrick = new ItemBase("enderizedbrick", tabCultivatedTech);
         public static ItemBaseSeeds seedHemp = new ItemBaseSeeds("seedhemp", Blocks.crophemp, Blocks.industrialsoil1);
-        public static ItemVape vape = new ItemVape();
+        //public static ItemVape vape = new ItemVape();
     }
 
     public static class Tiles {
         public static TileEntitySoil tileEntitySoil = new TileEntitySoil();
         public static TileEntityEcoflamer tileEcoflamer = new TileEntityEcoflamer();
-        public static TileEntitySprinkler tileEntitySprinkler = new TileEntitySprinkler();
+        public static TileEntitySprinkler tileSprinkler = new TileEntitySprinkler();
+        public static TileEntityFireplace tileFireplace = new TileEntityFireplace();
+
     }
 }

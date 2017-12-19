@@ -13,11 +13,33 @@
       "item": "minecraft:stick"
     },
     "c": {
-      "item": "minecraft:cauldron"
+      "item": "minecraft:cobblestone"
     },
-    "x": {
-      "item": "minecraft:log",
-      "data": 0
-    }
+    "x": [
+      {
+        "item": "minecraft:log",
+        "data": 0
+      },
+      {
+        "item": "minecraft:log",
+        "data": 1
+      },
+      {
+        "item": "minecraft:log",
+        "data": 2
+      },
+      {
+        "item": "minecraft:log",
+        "data": 3
+      },
+      {
+        "item": "minecraft:log2",
+        "data": 0
+      },
+      {
+        "item": "minecraft:log2",
+        "data": 1
+      }
+    ]
   }
 }

@@ -5,8 +5,6 @@ import com.ewyboy.bibliotheca.common.interfaces.IBlockRenderer;
 import com.ewyboy.bibliotheca.common.loaders.BlockLoader;
 import com.ewyboy.cultivatedtech.common.items.ItemEnderLily;
 import com.ewyboy.cultivatedtech.common.loaders.CreativeTabLoader;
-import com.ewyboy.cultivatedtech.common.utility.Logger;
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLilyPad;
 import net.minecraft.block.material.Material;
@@ -31,6 +29,7 @@ public class BlockEnderLily extends BlockLilyPad implements IBlockRenderer, Bloc
         super();
         setCreativeTab(CreativeTabLoader.tabCultivatedTech);
         setTickRandomly(true);
+        setHardness(1.0f);
     }
 
     @Override
