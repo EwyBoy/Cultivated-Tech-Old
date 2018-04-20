@@ -1,6 +1,5 @@
 #################################
 ###     Cultivated Tech       ###
-### Translated By: DYColdWind ###
 #################################
 
 #  - Creative Tab  - #
@@ -9,6 +8,7 @@ itemGroup.cultivatedtech=Cultivated Tech
 # -  Blocks - #
 tile.cultivatedtech.blockbarrel.name=桶
 tile.cultivatedtech.blockcrophemp.name=工业大麻
+tile.cultivatedtech.blockcropscorch.name=地狱根
 tile.cultivatedtech.blockhemp.name=麻草块
 tile.cultivatedtech.blocksoil.name=工业泥土
 tile.cultivatedtech.blockfireplace.name=壁炉
@@ -20,6 +20,13 @@ tile.cultivatedtech.blockecoflamer3.name=燃烧器
 tile.cultivatedtech.blocksprinkler1.name=洒水器
 tile.cultivatedtech.blocksprinkler2.name=洒水器
 tile.cultivatedtech.blocksprinkler3.name=洒水器
+tile.cultivatedtech.blocknethergrass.name=地狱根须
+tile.cultivatedtech.blockmagmalily.name=熔岩百合
+tile.cultivatedtech.blockindustrialdirt.name=沃土
+tile.cultivatedtech.blockindustrialsoil1.name=工业泥土
+tile.cultivatedtech.blockindustrialsoil2.name=工业泥土
+tile.cultivatedtech.blockenderlily.name=末影百合
+tile.cultivatedtech.blockswapper.name=Swapper
 
 #tile.cultivatedtech.block.name=
 
@@ -31,5 +38,6 @@ item.cultivatedtech.itembrick.name=红砖
 item.cultivatedtech.itembrick.name=红砖
 item.cultivatedtech.itemwitheredbrick.name=凋零砖
 item.cultivatedtech.itemenderizedbrick.name=末影砖
+item.cultivatedtech.itemscorch.name=地狱根
 
 #item.cultivatedtech.item.name=
