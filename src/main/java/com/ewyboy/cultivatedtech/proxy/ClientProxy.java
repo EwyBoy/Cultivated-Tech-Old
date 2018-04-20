@@ -1,7 +1,10 @@
 package com.ewyboy.cultivatedtech.proxy;
 
 import com.ewyboy.bibliotheca.common.helpers.ParticleHelper;
+import com.ewyboy.cultivatedtech.client.ParticleDebarker;
 import com.ewyboy.cultivatedtech.client.ParticleEffectSpray;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -35,6 +38,13 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
+    }
+
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void spawnBlockParticle(World worldObj, ItemStack stack, double x, double y, double z, float scale, float gravity, Vec3d velocity) {
+        ParticleHelper.spawnParticle(new ParticleDebarker(worldObj, stack, x, y, z, scale, gravity, velocity));
     }
 
     @Override

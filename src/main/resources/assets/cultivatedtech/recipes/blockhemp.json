@@ -3,8 +3,9 @@
     "item": "cultivatedtech:blockhemp"
   },
   "pattern": [
-    "xx",
-    "xx"
+    "xxx",
+    "xxx",
+    "xxx"
   ],
   "type": "minecraft:crafting_shaped",
   "key": {

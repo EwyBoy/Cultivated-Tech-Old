@@ -51,8 +51,7 @@ public class BlockEcoflamer extends BlockBaseModeled implements ITileEntityProvi
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
-        tooltip.add("Burns grass and plants from surroundings");
-        tooltip.add("Produces RF as a byproduct");
+        tooltip.add("Produces RF by Burning Grass and Plants From Surroundings");
     }
 
     @Override

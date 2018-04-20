@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cultivatedtech:blocksugarcane"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "axis=y": {"model": "cultivatedtech:blocksugarcane"},
+    "axis=z": {"model": "cultivatedtech:blocksugarcane", "x": 90},
+    "axis=x": {"model": "cultivatedtech:blocksugarcane", "x": 90, "y": 90}
+  }
+}

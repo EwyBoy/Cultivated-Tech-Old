@@ -13,19 +13,22 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
+import javax.annotation.Nullable;
 import java.util.Random;
-
-import static com.ewyboy.cultivatedtech.common.register.Register.Items.hemp;
 
 /**
  * Created by EwyBoy
@@ -33,6 +36,7 @@ import static com.ewyboy.cultivatedtech.common.register.Register.Items.hemp;
 public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, IWailaCamouflageUser {
 
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
+    private static final AxisAlignedBB BUSH_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 1.0D, 0.7D);
 
     public BlockCropHemp() {
         setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
@@ -40,6 +44,12 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
         setHardness(0.3F);
         this.disableStats();
         this.setCreativeTab(null);
+    }
+
+    @Override
+    @Nullable
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return BUSH_AABB;
     }
 
     @Override
@@ -72,6 +82,7 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (state.getValue(AGE) == 7) {
             breakBlock(world, pos, state);
+            world.playSound(playerIn, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 0.5f, 0.0f);
             int minY = pos.getY() - 4;
             for(; pos.getY() >= minY && !(world.getBlockState(pos).getBlock() instanceof BlockFarmland); pos = pos.down());
             if (world.getBlockState(pos).getBlock() instanceof BlockFarmland) world.setBlockState(pos.up(), getStateFromMeta(0));
@@ -129,40 +140,39 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         if(world.getBlockState(pos.up()).getBlock() == this) {
-            dropHemp(world,pos,state);
+            dropHarvest(world,pos,state);
             world.setBlockToAir(pos.up());
         }
         if(world.getBlockState(pos.up(2)).getBlock() == this) {
-            dropHemp(world,pos,state);
+            dropHarvest(world,pos,state);
             world.setBlockToAir(pos.up(2));
         }
         if(world.getBlockState(pos).getBlock() == this) {
-            dropHemp(world,pos,state);
+            dropHarvest(world,pos,state);
             world.setBlockToAir(pos);
         }
         if(world.getBlockState(pos.down()).getBlock() == this) {
-            dropHemp(world,pos,state);
+            dropHarvest(world,pos,state);
             world.setBlockToAir(pos.down());
         }
         if(world.getBlockState(pos.down(2)).getBlock() == this) {
-            dropHemp(world,pos,state);
+            dropHarvest(world,pos,state);
             world.setBlockToAir(pos.down(2));
         }
     }
 
-    private void dropHemp(World world, BlockPos pos, IBlockState state) {
+    public void dropHarvest(World world, BlockPos pos, IBlockState state) {
         ItemStack out = null;
         int currentState = state.getValue(AGE);
 
         if(currentState == 7) {
             float chance = world.rand.nextFloat();
             if (chance >= 0.40) {
-                out = new ItemStack(hemp,2);
+                out = new ItemStack(Register.Items.hemp,2);
             } else if (chance >=0.1) {
-                out = new ItemStack(hemp);
+                out = new ItemStack(Register.Items.hemp);
             }
         }
-
         if (out != null) spawnAsEntity(world, pos, out);
     }
 
@@ -180,6 +190,11 @@ public class BlockCropHemp extends BlockBush implements IGrowable, IPlantable, I
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         entityIn.motionX *=(1.0-(state.getValue(AGE) / 14.0));
         entityIn.motionZ *=(1.0-(state.getValue(AGE) / 14.0));
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+        return new ItemStack(Register.Items.seedHemp);
     }
 
     @Override

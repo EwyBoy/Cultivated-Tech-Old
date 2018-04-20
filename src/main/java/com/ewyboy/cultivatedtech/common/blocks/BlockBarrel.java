@@ -57,7 +57,7 @@ public class BlockBarrel extends BlockBaseModeledFacing implements IWailaInforma
         }
         if (player.isSneaking() && world.getBlockState(pos).getValue(ENABLED) && world.getBlockState(pos).getValue(FACING).equals(facing)) {
             world.setBlockState(pos, getDefaultState().withProperty(ENABLED, false).withProperty(FACING, world.getBlockState(pos).getValue(FACING)));
-            if (!player.isCreative())  {
+            if (!player.isCreative()) {
                 if (!player.inventory.addItemStackToInventory(item)) {
                     EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1.25, pos.getZ() + 0.5, item);
                     world.spawnEntity(entityItem);

@@ -10,7 +10,7 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "17w50-C-1.12.2"
+version = "18w16-A-1.12.2"
 group = "com.ewyboy.cultivatedtech"
 archivesBaseName = "Cultivated Tech"
 

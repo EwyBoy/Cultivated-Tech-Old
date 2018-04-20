@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cultivatedtech:blockstrippeddarkoak"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "axis=y": {"model": "cultivatedtech:blockstrippeddarkoak"},
+    "axis=z": {"model": "cultivatedtech:blockstrippeddarkoak", "x": 90},
+    "axis=x": {"model": "cultivatedtech:blockstrippeddarkoak", "x": 90, "y": 90}
+  }
+}

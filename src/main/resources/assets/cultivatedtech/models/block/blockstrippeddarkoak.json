@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "cultivatedtech:blocks/stripped/stripped_dark_oak_log_top",
+    "side": "cultivatedtech:blocks/stripped/stripped_dark_oak_log"
+  }
+}

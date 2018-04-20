@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cultivatedtech:blockstrippedjungle"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "axis=y": {"model": "cultivatedtech:blockstrippedjungle"},
+    "axis=z": {"model": "cultivatedtech:blockstrippedjungle", "x": 90},
+    "axis=x": {"model": "cultivatedtech:blockstrippedjungle", "x": 90, "y": 90}
+  }
+}

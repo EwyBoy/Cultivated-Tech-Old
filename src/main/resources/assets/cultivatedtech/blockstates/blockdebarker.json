@@ -1,0 +1,59 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cultivatedtech:debarker/00"
+  },
+  "variants": {
+    "inventory": [{}],
+    "state": {
+      "0": {
+        "model": "cultivatedtech:debarker/00"
+      },
+      "1": {
+        "model": "cultivatedtech:debarker/01"
+      },
+      "2": {
+        "model": "cultivatedtech:debarker/02"
+      },
+      "3": {
+        "model": "cultivatedtech:debarker/03"
+      },
+      "4": {
+        "model": "cultivatedtech:debarker/04"
+      },
+      "5": {
+        "model": "cultivatedtech:debarker/05"
+      },
+      "6": {
+        "model": "cultivatedtech:debarker/06"
+      },
+      "7": {
+        "model": "cultivatedtech:debarker/07"
+      },
+      "8": {
+        "model": "cultivatedtech:debarker/08"
+      },
+      "9": {
+        "model": "cultivatedtech:debarker/09"
+      },
+      "10": {
+        "model": "cultivatedtech:debarker/10"
+      },
+      "11": {
+        "model": "cultivatedtech:debarker/11"
+      }
+    },
+    "facing": {
+      "north": {"y" : 90},
+      "south": {"y": 270},
+      "west": {"y": 0},
+      "east": {"y": 180},
+      "up": {"z": 0},
+      "down": {"z": 0}
+    },
+    "enabled": {
+      "true": {},
+      "false": {}
+    }
+  }
+}

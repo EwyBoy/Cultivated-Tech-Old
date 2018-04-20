@@ -7,7 +7,7 @@ import com.ewyboy.bibliotheca.common.loaders.TileEntityLoader;
 import com.ewyboy.cultivatedtech.common.loaders.*;
 import com.ewyboy.cultivatedtech.common.register.Register;
 import com.ewyboy.cultivatedtech.common.world.TheWorldGenerator;
-import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -33,6 +33,7 @@ public class CommonProxy {
         CompatibilityHandler.registerWaila();
         ConfigLoader.registerConfig(event.getSuggestedConfigurationFile());
         CreativeTabLoader.initVanillaStuffToTab();
+        PacketLoader.loadPackets();
         FluidLoader.init();
         BlockLoader.init(MOD_ID, Register.Blocks.class);
         ItemLoader.init(MOD_ID, Register.Items.class);
@@ -47,7 +48,8 @@ public class CommonProxy {
 
     public void postInit(FMLPostInitializationEvent event) {}
 
+    public void spawnBlockParticle(World worldObj, ItemStack stack, double x, double y, double z, float scale, float gravity, Vec3d velocity) {}
+
     public void spawnLiquidSpray(World worldObj, FluidStack fluid, double x, double y, double z, float scale, float gravity, Vec3d velocity) {}
 
-    public void registerFluidBlockRendering(Block block, String name) {}
 }

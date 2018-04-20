@@ -12,11 +12,14 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -58,11 +61,12 @@ public class BlockCropScorch extends BlockBush implements IGrowable, IPlantable,
                 if (!world.isRemote) {
                     world.destroyBlock(pos, shouldDrop());
                     world.setBlockState(pos, getStateFromMeta(0));
+                    world.playSound(playerIn, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 0.5f, 0.0f);
                 }
                 return true;
             }
         }
-        return super.onBlockActivated(world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+        return true;
     }
 
     @Override
@@ -78,6 +82,11 @@ public class BlockCropScorch extends BlockBush implements IGrowable, IPlantable,
                 world.setBlockState(pos, this.getStateFromMeta(currentState + 1));
             }
         }
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+        return new ItemStack(Register.Items.scorch);
     }
 
     @Override

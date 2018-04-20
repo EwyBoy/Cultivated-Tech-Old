@@ -60,7 +60,7 @@ public class TileEntityEcoflamer extends TileEntity implements ITickable, IEnerg
                  generatedAmount = 100000;
                  range = 7;
                  probability = 50;
-                 state = Register.Blocks.ecoflamer3.getDefaultState();
+                 //state = Register.Blocks.ecoflamer3.getDefaultState();
             break;
 
             default:

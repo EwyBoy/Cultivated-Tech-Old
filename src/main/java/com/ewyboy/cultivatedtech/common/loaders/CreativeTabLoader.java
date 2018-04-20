@@ -4,7 +4,6 @@ import com.ewyboy.cultivatedtech.common.register.Register;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import static com.ewyboy.cultivatedtech.common.utility.Reference.Info.MOD_ID;

@@ -1,11 +1,11 @@
 package com.ewyboy.cultivatedtech.common.loaders;
 
 import com.ewyboy.cultivatedtech.common.register.Register;
-import com.ewyboy.cultivatedtech.common.utility.RecipeHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import static com.ewyboy.bibliotheca.common.loaders.RecipeLoader.*;
 import static com.ewyboy.cultivatedtech.common.register.Register.Items.brick;
 import static com.ewyboy.cultivatedtech.common.register.Register.Items.witheredBrick;
 import static net.minecraft.init.Items.BRICK;
@@ -14,14 +14,18 @@ import static net.minecraftforge.fml.common.registry.GameRegistry.addSmelting;
 public class RecipeLoader {
 
     public static void init() {
-        //registerRecipes();
+        registerRecipes();
         registerSmeltingRecipes();
     }
 
     public static void registerRecipes() {
-        RecipeHelper.setupDir();
-            RecipeHelper.addShapedRecipe(new ItemStack(Register.Blocks.industrialdirt, 8), "xxx", "xox", "xxx", 'x', new ItemStack(Blocks.DIRT,1,1), 'o', new ItemStack(Items.DYE, 1, 15));
-        RecipeHelper.generateConstants();
+        addShapelessOreRecipe(new ItemStack(Blocks.PLANKS, 4, 0), new ItemStack(Register.Blocks.strippedoak));
+        addShapelessOreRecipe(new ItemStack(Blocks.PLANKS, 4, 1), new ItemStack(Register.Blocks.strippedspruce));
+        addShapelessOreRecipe(new ItemStack(Blocks.PLANKS, 4, 2), new ItemStack(Register.Blocks.strippedbirch));
+        addShapelessOreRecipe(new ItemStack(Blocks.PLANKS, 4, 3), new ItemStack(Register.Blocks.strippedjungle));
+        addShapelessOreRecipe(new ItemStack(Blocks.PLANKS, 4, 4), new ItemStack(Register.Blocks.strippedacacia));
+        addShapelessOreRecipe(new ItemStack(Blocks.PLANKS, 4, 5), new ItemStack(Register.Blocks.strippeddarkoak));
+        addShapelessOreRecipe(new ItemStack(Items.SUGAR, 2), new ItemStack(Register.Items.sugarcane));
     }
 
     public static void registerSmeltingRecipes() {

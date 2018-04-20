@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "cultivatedtech:blocksugarcane"
+  },
+  "pattern": [
+    "xxx",
+    "xxx",
+    "xxx"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "cultivatedtech:itemsugarcane"
+    }
+  }
+}

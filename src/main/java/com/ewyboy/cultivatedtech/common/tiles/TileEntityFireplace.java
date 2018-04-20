@@ -126,7 +126,7 @@ public class TileEntityFireplace extends TileEntityFurnace {
         this.furnaceBurnTime = compound.getInteger("BurnTime");
         this.cookTime = compound.getInteger("CookTime");
         this.totalCookTime = compound.getInteger("CookTimeTotal");
-        this.currentItemBurnTime = getItemBurnTime(this.furnaceItemStacks.get(1));
+        this.currentItemBurnTime = getNerfedBurnTime(this.furnaceItemStacks.get(1));
 
         if (compound.hasKey("CustomName", 8)) {
             this.furnaceCustomName = compound.getString("CustomName");
@@ -178,7 +178,7 @@ public class TileEntityFireplace extends TileEntityFurnace {
             ItemStack itemstack = this.furnaceItemStacks.get(1);
             if (this.isBurning() || !itemstack.isEmpty() && !this.furnaceItemStacks.get(0).isEmpty()) {
                 if (!this.isBurning() && this.canSmelt()) {
-                    this.furnaceBurnTime = getItemBurnTime(itemstack);
+                    this.furnaceBurnTime = getNerfedBurnTime(itemstack);
                     this.currentItemBurnTime = this.furnaceBurnTime;
                     if (this.isBurning()) {
                         flag1 = true;
@@ -213,7 +213,7 @@ public class TileEntityFireplace extends TileEntityFurnace {
     }
 
     public int getCookTime(ItemStack stack) {
-        return 200;
+        return 100;
     }
 
     /**
@@ -263,6 +263,10 @@ public class TileEntityFireplace extends TileEntityFurnace {
             }
             itemstack.shrink(1);
         }
+    }
+
+    public static int getNerfedBurnTime(ItemStack stack) {
+        return getItemBurnTime(stack) / 2;
     }
 
     /**
@@ -324,7 +328,7 @@ public class TileEntityFireplace extends TileEntityFurnace {
     }
 
     public static boolean isItemFuel(ItemStack stack) {
-        return getItemBurnTime(stack) > 0;
+        return getNerfedBurnTime(stack) > 0;
     }
 
     /**
