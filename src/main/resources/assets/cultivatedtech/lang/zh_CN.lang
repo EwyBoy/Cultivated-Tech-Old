@@ -3,13 +3,15 @@
 #################################
 
 #  - Creative Tab  - #
-itemGroup.cultivatedtech=Cultivated Tech
+#itemGroup.cultivatedtech=Cultivated Tech
 
 # -  Blocks - #
 tile.cultivatedtech.blockbarrel.name=桶
 tile.cultivatedtech.blockcrophemp.name=工业大麻
+tile.cultivatedtech.blockcropsugarcane.name=工业甘蔗
 tile.cultivatedtech.blockcropscorch.name=地狱根
 tile.cultivatedtech.blockhemp.name=麻草块
+tile.cultivatedtech.blocksugarcane.name=甘蔗堆
 tile.cultivatedtech.blocksoil.name=工业泥土
 tile.cultivatedtech.blockfireplace.name=壁炉
 tile.cultivatedtech.blockenderizedbrick.name=末影砖块
@@ -27,17 +29,26 @@ tile.cultivatedtech.blockindustrialsoil1.name=工业泥土
 tile.cultivatedtech.blockindustrialsoil2.name=工业泥土
 tile.cultivatedtech.blockenderlily.name=末影百合
 tile.cultivatedtech.blockswapper.name=Swapper
+tile.cultivatedtech.blockdebarker.name=剥皮器
+tile.cultivatedtech.blockstrippedoak.name=剥皮橡木
+tile.cultivatedtech.blockstrippedspruce.name=剥皮云杉木
+tile.cultivatedtech.blockstrippedbirch.name=剥皮白桦木
+tile.cultivatedtech.blockstrippedjungle.name=剥皮丛林木
+tile.cultivatedtech.blockstrippedacacia.name=剥皮金合欢木
+tile.cultivatedtech.blockstrippeddarkoak.name=剥皮深色橡木
 
 #tile.cultivatedtech.block.name=
 
 #  - Items  - #
-item.cultivatedtech.itembarreltap.name=水龙头（桶）
+item.cultivatedtech.itembarreltap.name=水龙头
 item.cultivatedtech.itemhemp.name=工业大麻
-item.cultivatedtech.itemseedhemp.name=工业大麻种子
-item.cultivatedtech.itembrick.name=红砖
-item.cultivatedtech.itembrick.name=红砖
+item.cultivatedtech.itemsugarcane.name=工业甘蔗
+item.cultivatedtech.itembagasse.name=甘蔗渣
+item.cultivatedtech.itembrick.name=砖块
 item.cultivatedtech.itemwitheredbrick.name=凋零砖
 item.cultivatedtech.itemenderizedbrick.name=末影砖
 item.cultivatedtech.itemscorch.name=地狱根
+item.cultivatedtech.itemseedhemp.name=工业大麻种子
+item.cultivatedtech.itemseedsugarcane.name=甘蔗种子
 
 #item.cultivatedtech.item.name=
