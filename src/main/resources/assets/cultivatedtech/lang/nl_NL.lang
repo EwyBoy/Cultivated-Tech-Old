@@ -1,0 +1,54 @@
+###############################
+###     Cultivated Tech     ###
+###############################
+
+#  - Creative Tab  - #
+itemGroup.cultivatedtech=Cultivated Tech
+
+# -  Blocks - #
+tile.cultivatedtech.blockbarrel.name=Vat
+tile.cultivatedtech.blockcrophemp.name=Industriële Hennep
+tile.cultivatedtech.blockcropsugarcane.name=Industrieel Suikerriet
+tile.cultivatedtech.blockcropscorch.name=Schroeisel
+tile.cultivatedtech.blockhemp.name=Baal Hennep
+tile.cultivatedtech.blocksugarcane.name=Baal Suikerriet
+tile.cultivatedtech.blocksoil.name=Industriële Bodem
+tile.cultivatedtech.blockfireplace.name=Haard
+tile.cultivatedtech.blockenderizedbrick.name=Verenderde Bakstenen
+tile.cultivatedtech.blockwitheredbrick.name=Verdorde Bakstenen
+tile.cultivatedtech.blockecoflamer1.name=Eco-Vlammenwerper
+tile.cultivatedtech.blockecoflamer2.name=Eco-Vlammenwerper
+tile.cultivatedtech.blockecoflamer3.name=Eco-Vlammenwerper
+tile.cultivatedtech.blocksprinkler1.name=Sproeier
+tile.cultivatedtech.blocksprinkler2.name=Sproeier
+tile.cultivatedtech.blocksprinkler3.name=Sproeier
+tile.cultivatedtech.blocknethergrass.name=Helwortels
+tile.cultivatedtech.blockmagmalily.name=Magma Lelie
+tile.cultivatedtech.blockindustrialdirt.name=Rijke Aarde
+tile.cultivatedtech.blockindustrialsoil1.name=Industriële Bodem
+tile.cultivatedtech.blockindustrialsoil2.name=Industriële Bodem
+tile.cultivatedtech.blockenderlily.name=Ender Lelie
+tile.cultivatedtech.blockswapper.name=Verwisselaar
+tile.cultivatedtech.blockdebarker.name=Ontschorser
+tile.cultivatedtech.blockstrippedoak.name=Gestript Eikenhout
+tile.cultivatedtech.blockstrippedspruce.name=Gestript Vurenhout
+tile.cultivatedtech.blockstrippedbirch.name=Gestript Berkenhout
+tile.cultivatedtech.blockstrippedjungle.name=Gestript Junglehout
+tile.cultivatedtech.blockstrippedacacia.name=Gestript Acaciahout
+tile.cultivatedtech.blockstrippeddarkoak.name=Gestript Donker Eikenhout
+
+#tile.cultivatedtech.block.name=
+
+#  - Items  - #
+item.cultivatedtech.itembarreltap.name=Vatkraan
+item.cultivatedtech.itemhemp.name=Industriële Hennep
+item.cultivatedtech.itemsugarcane.name=Industrieel Suikerriet
+item.cultivatedtech.itembagasse.name=Grondsop
+item.cultivatedtech.itembrick.name=Bakstenen
+item.cultivatedtech.itemwitheredbrick.name=Verdorde Bakstenen
+item.cultivatedtech.itemenderizedbrick.name=Verenderde Bakstenen
+item.cultivatedtech.itemscorch.name=Schroeisel
+item.cultivatedtech.itemseedhemp.name=Industriële Hennepzaad
+item.cultivatedtech.itemseedsugarcane.name=Suikerriet Zaad
+
+#item.cultivatedtech.item.name=
