@@ -9,10 +9,11 @@ buildscript {
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven'
 
-version = "18w16-A-1.12.2"
+version = "${mc_version}-${mod_version}"
 group = "com.ewyboy.cultivatedtech"
-archivesBaseName = "Cultivated Tech"
+archivesBaseName = "CultivatedTech"
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
@@ -20,17 +21,21 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.1.2556"
+    version = "${mc_version}-${forge_version}"
     runDir = "run"
-    mappings = "snapshot_20170624"
+    mappings = "${mcp_mappings}"
+    makeObfSourceJar = false
 }
 
 repositories {  
-    maven {url "http://tehnut.info/maven"}
+    maven { url "http://tehnut.info/maven" }
+    maven { url = "http://maven.covers1624.net" }
 }
 
 dependencies {
-    deobfCompile "mcp.mobius.waila:Hwyla:1.8.20-B35_1.12"
+	compile "com.ewyboy.bibliotheca:Bibliotheca:${mc_version}-${bibliotheca_version}:deobf"
+    compile "mcp.mobius.waila:Hwyla:${waila_version}"
+    compile "cofh:RedstoneFlux:${rf_version}:deobf"
 }
 
 processResources {
@@ -39,12 +44,68 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
-        // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
 	
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+}
+
+jar {
+    classifier = 'universal'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
+task srcJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives deobfJar
+    archives srcJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            if (project.hasProperty("local_maven")) {
+                repository(url: "file://${local_maven}")
+                pom {
+                    groupId = project.group
+                    artifactId = project.archivesBaseName
+                    project {
+                        name project.archivesBaseName
+                        packaging 'jar'
+                        description 'CultivatedTech'
+                        url 'https://github.com/EwyBoy/Cultivated-Tech'
+
+                        scm {
+                            url 'https://github.com/EwyBoy/Cultivated-Tech'
+                            connection 'scm:git:git://github.com/EwyBoy/Cultivated-Tech.git'
+                            developerConnection 'scm:git:git@github.com:EwyBoy/Cultivated-Tech.git'
+                        }
+
+                        issueManagement {
+                            system 'github'
+                            url 'https://github.com/EwyBoy/Cultivated-Tech/issues'
+                        }
+
+                        developers {
+                            developer {
+                                id 'EwyBoy'
+                                name 'EwyBoy'
+                                roles { role 'developer' }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
